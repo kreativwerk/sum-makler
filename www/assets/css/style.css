@@ -89,7 +89,7 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .btn .btn-icon img { width: 13px; height: 13px; }
 .btn--ghost { background: #fff; color: #141414; border-color: #e5e5e5; }
 .btn--ghost:hover { box-shadow: 0 10px 24px rgba(16, 24, 40, .15); }
-.btn--ghost .btn-icon { background: linear-gradient(#444, #444); }
+.btn--ghost .btn-icon { background: linear-gradient(#ececec, #ececec); }
 .btn--solid { padding: 5px 26px; font-weight: 400; letter-spacing: 1px; }
 .btn--solid img { width: 20px; height: 20px; }
 
