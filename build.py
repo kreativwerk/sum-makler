@@ -498,7 +498,7 @@ def build_index():
         <div><h3>Justin Duensing</h3><p>Office Manager</p></div>
       </div>
     </div>
-    <div>
+    <div class="vorteile-col">
       <h2 class="split-head">Deine Vorteile</h2>
       <div class="vorteile-grid">
         {vorteile_html}
