@@ -225,7 +225,7 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 
 /* Testimonial-Karte (Original: weiß, Radius 11px, Schatten, Text #909090 14px) */
 .slider { position: relative; z-index: 2; max-width: 420px; margin: -72px auto 0; }
-@media (min-width: 992px) { .slider { position: absolute; left: 50%; transform: translateX(-50%); bottom: -78px; margin: 0; width: 470px; } }
+@media (min-width: 992px) { .slider { position: absolute; left: 50%; transform: translateX(-50%); bottom: -104px; margin: 0; width: 470px; } }
 .slide-track { position: relative; }
 .slide {
   background: #fff; border-radius: 16px; box-shadow: 0 12px 40px rgba(16, 24, 40, .13);
