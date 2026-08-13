@@ -378,7 +378,8 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .team-col { text-align: center; }
 .vorteile-col { text-align: center; }
 .vorteile-col .split-head { position: sticky; top: calc(var(--nav-h) + 40px); z-index: 5; }
-.team-member { display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 24px; text-align: left; }
+.team-list { display: inline-flex; flex-direction: column; align-items: flex-start; text-align: left; }
+.team-member { display: flex; align-items: center; gap: 20px; margin-bottom: 24px; }
 .team-member img { width: 128px; height: 128px; border-radius: 50%; object-fit: cover; object-position: top; background: #eee; flex: none; }
 .team-member h3 { font-size: 1.125rem; font-weight: 600; color: var(--ink); margin-bottom: 2px; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
 .team-member p { color: var(--gray600); font-size: 1rem; margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
@@ -387,16 +388,16 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .vorteile-grid { display: block; }
 .vorteil-card {
   background: linear-gradient(180deg, #fff 0%, #f4f6fe 100%);
-  border: 3px solid var(--blue); border-radius: 14px; padding: 34px 28px;
+  border: 3px solid var(--blue); border-radius: 14px; padding: 24px 28px;
   margin: 0 auto 44px;
-  max-width: 320px; min-height: 500px;
+  max-width: 368px; min-height: 430px;
   display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px;
   text-align: center;
   position: sticky; top: calc(var(--nav-h) + 104px + var(--i, 0) * 24px);
   box-shadow: 0 -10px 30px rgba(16, 24, 40, .07);
 }
 .vorteil-card:last-child { margin-bottom: 0; }
-@media (max-width: 479.98px) { .vorteil-card { min-height: 460px; padding: 30px 22px; } }
+@media (max-width: 479.98px) { .vorteil-card { min-height: 400px; padding: 24px 22px; } }
 .vorteil-card h3 { font-size: 22px; letter-spacing: -.5px; font-weight: 700; color: #2c2c2c; margin-bottom: 12px; line-height: 1.25; }
 .vorteil-card p { color: #6b6b6b; font-size: .95rem; line-height: 1.55; max-width: 480px; }
 .vorteil-points { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 6px; margin-top: 18px; text-align: left; }
