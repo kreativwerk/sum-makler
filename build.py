@@ -482,26 +482,24 @@ def build_index():
 </section>
 
 <section class="section team-section" id="team">
-  <div class="container">
-    <div class="team-intro">
+  <div class="container team-vorteile">
+    <div class="team-col">
       <h2 class="split-head">Unser Team</h2>
-      <div class="team-row">
-        <div class="team-member reveal">
-          <img src="/assets/img/team-max-400.webp" width="128" height="128" loading="lazy" alt="Maximilian Schneider, Versicherungsfachmann (IHK)">
-          <div><h3>Maximilian Schneider</h3><p>Versicherungsfachmann (IHK)</p></div>
-        </div>
-        <div class="team-member reveal reveal-d1">
-          <img src="/assets/img/team-marco-400.webp" width="128" height="128" loading="lazy" alt="Marco Musil, Diplom Betriebswirt (FH)">
-          <div><h3>Marco Musil</h3><p>Diplom Betriebswirt (FH)</p></div>
-        </div>
-        <div class="team-member reveal reveal-d2">
-          <img src="/assets/img/team-justin-400.webp" width="128" height="128" loading="lazy" alt="Justin Duensing, Office Manager">
-          <div><h3>Justin Duensing</h3><p>Office Manager</p></div>
-        </div>
+      <div class="team-member reveal">
+        <img src="/assets/img/team-max-400.webp" width="128" height="128" loading="lazy" alt="Maximilian Schneider, Versicherungsfachmann (IHK)">
+        <div><h3>Maximilian Schneider</h3><p>Versicherungsfachmann (IHK)</p></div>
+      </div>
+      <div class="team-member reveal reveal-d1">
+        <img src="/assets/img/team-marco-400.webp" width="128" height="128" loading="lazy" alt="Marco Musil, Diplom Betriebswirt (FH)">
+        <div><h3>Marco Musil</h3><p>Diplom Betriebswirt (FH)</p></div>
+      </div>
+      <div class="team-member reveal reveal-d2">
+        <img src="/assets/img/team-justin-400.webp" width="128" height="128" loading="lazy" alt="Justin Duensing, Office Manager">
+        <div><h3>Justin Duensing</h3><p>Office Manager</p></div>
       </div>
     </div>
-    <div class="vorteile-wrap">
-      <h2 class="split-head vorteile-title">Deine Vorteile</h2>
+    <div>
+      <h2 class="split-head">Deine Vorteile</h2>
       <div class="vorteile-grid">
         {vorteile_html}
         <div class="vorteil-card kontakt-card" style="--i:4">
