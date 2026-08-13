@@ -366,20 +366,22 @@ def build_index():
       <h1>Wir sind Deine <strong>unabhängigen</strong> Versicherungsmakler aus der Metropolregion Nürnberg</h1>
       <p class="hero-sub">Buche jetzt einen Termin für eine <strong>persönliche &amp; kostenfreie</strong> Beratung!</p>
       {cta_buttons()}
+    </div>
+    <div class="hero-visual">
+      <div class="photo-wrap">
+        <img class="pattern" src="/assets/img/grosse-auswahl.svg" alt="" aria-hidden="true">
+        <img class="hero-photo" src="/assets/img/hero-team-800.webp"
+             srcset="/assets/img/hero-team-480.webp 480w, /assets/img/hero-team-800.webp 800w, /assets/img/hero-team-1035.webp 1035w"
+             sizes="(min-width: 992px) 45vw, 90vw" width="723" height="669" fetchpriority="high"
+             alt="Marco Musil und Maximilian Schneider – unabhängige Versicherungsmakler aus der Metropolregion Nürnberg">
+        {slider_html()}
+      </div>
       <div class="rating">
         <img class="badge" src="/assets/img/google-badge-160.webp" srcset="/assets/img/google-badge-160.webp 1x, /assets/img/google-badge-320.webp 2x" alt="Google" width="66" height="44" loading="lazy">
         <strong>5,0</strong>
         <img class="stars" src="/assets/img/sterne-5.svg" alt="5 von 5 Sternen bei Google" width="110" height="20">
         <span class="rating-count">185 Rezensionen</span>
       </div>
-    </div>
-    <div class="hero-visual">
-      <img class="pattern" src="/assets/img/grosse-auswahl.svg" alt="" aria-hidden="true">
-      <img class="hero-photo" src="/assets/img/hero-team-800.webp"
-           srcset="/assets/img/hero-team-480.webp 480w, /assets/img/hero-team-800.webp 800w, /assets/img/hero-team-1035.webp 1035w"
-           sizes="(min-width: 992px) 45vw, 90vw" width="723" height="669" fetchpriority="high"
-           alt="Marco Musil und Maximilian Schneider – unabhängige Versicherungsmakler aus der Metropolregion Nürnberg">
-      {slider_html()}
     </div>
   </div>
 </section>
