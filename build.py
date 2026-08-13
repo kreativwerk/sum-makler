@@ -150,7 +150,19 @@ ORG_LD = """{
     "addressRegion": "Bayern",
     "addressCountry": "DE"
   },
-  "areaServed": "Metropolregion Nürnberg",
+  "areaServed": ["Nürnberg", "Fürth", "Erlangen", "Metropolregion Nürnberg"],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+49 911 37758430",
+    "email": "info@sum-makler.de",
+    "contactType": "customer service",
+    "availableLanguage": "German"
+  },
+  "knowsAbout": [
+    "Private Krankenversicherung", "Berufsunfähigkeitsversicherung", "Haftpflichtversicherung",
+    "Hausratversicherung", "KFZ-Versicherung", "Rechtsschutzversicherung",
+    "Altersvorsorge", "Wohngebäudeversicherung", "Beamtenversicherung"
+  ],
   "founder": [
     {"@type": "Person", "name": "Maximilian Schneider", "jobTitle": "Versicherungsfachmann (IHK)"},
     {"@type": "Person", "name": "Marco Musil", "jobTitle": "Diplom Betriebswirt (FH)"}
@@ -705,7 +717,7 @@ def build_sparte_detail(s):
 </section>"""
     page(
         path=f"sparten/{slug}/index.html",
-        title=f"{name} | Unabhängige Beratung – Schneider & Musil",
+        title=f"{name} in Nürnberg & Fürth | Schneider & Musil",
         desc=(s["Einleitung Hero"][:155] + "…") if len(s["Einleitung Hero"]) > 158 else s["Einleitung Hero"],
         body=body,
         extra_ld=[faq_ld, breadcrumb_ld([("Start", BASE + "/"), ("Sparten", BASE + "/sparten/"), (e(name), f"{BASE}/sparten/{slug}/")])],
@@ -752,6 +764,28 @@ def build_blog_index():
         extra_ld=[breadcrumb_ld([("Start", BASE + "/"), ("Blog", BASE + "/blog/")])],
     )
 
+def related_articles_html(current):
+    others = [x for x in blogs if x["Slug"] != current["Slug"]]
+    same_cat = [x for x in others if x["Kategorie"] == current["Kategorie"]]
+    rest = [x for x in others if x["Kategorie"] != current["Kategorie"]]
+    picks = (same_cat + rest)[:3]
+    if not picks:
+        return ""
+    cards = ""
+    for x in picks:
+        cards += f"""<a href="/sum-blog/{x['Slug']}/" class="blog-card">
+  <span class="blog-tag">{e(x['Kategorie'])}</span>
+  <h3>{e(x['Name'])}</h3>
+  <p>{e(x['Headline'])}</p>
+  <span class="blog-more">Mehr erfahren <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a>"""
+    return f"""<section class="section related-articles" style="padding-top:0">
+  <div class="container">
+    <h2 style="text-align:center;margin-bottom:32px">Weitere Artikel aus unserem Blog</h2>
+    <div class="blog-grid">{cards}</div>
+  </div>
+</section>"""
+
 def build_blog_detail(b):
     slug = b["Slug"]
     sections = f"""<div class="container detail-content">
@@ -762,7 +796,7 @@ def build_blog_detail(b):
         t = b.get(f"Titel Versicherung {i}", "").strip()
         d = b.get(f"Beschreibung Versicherung {i}", "").strip()
         if t and d:
-            items += f'<div class="vorteil-card" style="margin-bottom:16px"><h3><img src="/assets/img/check-blau.svg" alt="" width="20" height="20" loading="lazy" style="vertical-align:-3px"> {e(t)}</h3><p style="margin:0">{e(d)}</p></div>'
+            items += f'<div class="check-item"><h3><img src="/assets/img/check-blau.svg" alt="" width="20" height="20" loading="lazy" style="vertical-align:-3px"> {e(t)}</h3><p style="margin:0">{e(d)}</p></div>'
     if items:
         sections += f"<h2>Diese Versicherungen solltest Du kennen:</h2>{items}"
         if b.get("CTA Beschreibung Checkliste", "").strip():
@@ -778,24 +812,29 @@ def build_blog_detail(b):
             t = b.get(f"Beispiel Titel {i}", "").strip().rstrip("|").strip()
             d = b.get(f"Beispiel Beschreibung {i}", "").strip()
             if t and d:
-                sections += f'<div class="vorteil-card" style="margin-bottom:16px"><h3>{e(t)}</h3><p style="margin:0">{e(d)}</p></div>'
+                sections += f'<div class="check-item"><h3>{e(t)}</h3><p style="margin:0">{e(d)}</p></div>'
     if b.get("Fazit Titel", "").strip():
         sections += f"<h2>{e(b['Fazit Titel'])}</h2><p>{e(b['Fazit Beschreibung'])}</p>"
     sections += "</div>"
 
-    iso = ""
-    m = re.search(r"\w+ (\w+) (\d+) (\d+)", b.get("Published On", ""))
-    months = dict(Jan="01", Feb="02", Mar="03", Apr="04", May="05", Jun="06", Jul="07", Aug="08", Sep="09", Oct="10", Nov="11", Dec="12")
-    if m and m.group(1) in months:
-        iso = f"{m.group(3)}-{months[m.group(1)]}-{int(m.group(2)):02d}"
+    def parse_webflow_date(raw):
+        m = re.search(r"\w+ (\w+) (\d+) (\d+)", raw or "")
+        months = dict(Jan="01", Feb="02", Mar="03", Apr="04", May="05", Jun="06", Jul="07", Aug="08", Sep="09", Oct="10", Nov="11", Dec="12")
+        if m and m.group(1) in months:
+            return f"{m.group(3)}-{months[m.group(1)]}-{int(m.group(2)):02d}"
+        return ""
+    iso = parse_webflow_date(b.get("Published On", ""))
+    iso_mod = parse_webflow_date(b.get("Updated On", "")) or iso
     blog_ld = f"""{{
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": {jstr(b['Name'])},
   "description": {jstr(b['Headline'])},
   "inLanguage": "de",
+  "image": "{BASE}/assets/img/og-home.jpg",
   {f'"datePublished": "{iso}",' if iso else ''}
-  "author": {{"@type": "Organization", "name": "Schneider & Musil Versicherungsmakler GbR"}},
+  {f'"dateModified": "{iso_mod}",' if iso_mod else ''}
+  "author": {{"@type": "Organization", "name": "Schneider & Musil Versicherungsmakler GbR", "url": "{BASE}/"}},
   "publisher": {{"@id": "https://www.sum-makler.de/#organization"}},
   "mainEntityOfPage": "{BASE}/sum-blog/{slug}/"
 }}"""
@@ -819,6 +858,7 @@ def build_blog_detail(b):
     <a href="/termin/" class="btn btn--solid">Jetzt Termin vereinbaren&nbsp;<img src="/assets/img/pfeil-weiss.svg" alt="" width="26" height="26"></a>
   </div>
 </section>
+{related_articles_html(b)}
 </article>"""
     page(
         path=f"sum-blog/{slug}/index.html",
@@ -941,8 +981,18 @@ def build_404():
 
 # ================================================================ SEO files
 def build_seo_files(urls):
+    def lastmod_for(u):
+        m = re.match(rf"{re.escape(BASE)}/sum-blog/([^/]+)/", u)
+        if m:
+            b = next((x for x in blogs if x["Slug"] == m.group(1)), None)
+            if b:
+                dm = re.search(r"\w+ (\w+) (\d+) (\d+)", b.get("Updated On", "") or b.get("Published On", ""))
+                months = dict(Jan="01", Feb="02", Mar="03", Apr="04", May="05", Jun="06", Jul="07", Aug="08", Sep="09", Oct="10", Nov="11", Dec="12")
+                if dm and dm.group(1) in months:
+                    return f"{dm.group(3)}-{months[dm.group(1)]}-{int(dm.group(2)):02d}"
+        return TODAY
     entries = "".join(
-        f"<url><loc>{u}</loc><lastmod>{TODAY}</lastmod></url>" for u in urls
+        f"<url><loc>{u}</loc><lastmod>{lastmod_for(u)}</lastmod></url>" for u in urls
     )
     with open(os.path.join(OUT, "sitemap.xml"), "w", encoding="utf-8") as fh:
         fh.write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{entries}</urlset>')
