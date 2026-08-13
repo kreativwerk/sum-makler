@@ -14,9 +14,16 @@
     } else {
       sessionStorage.setItem('sumPreloaded', '1');
       var anim = document.getElementById('preloaderAnim');
-      if (window.lottie && anim) {
-        anim.innerHTML = '';
-        window.lottie.loadAnimation({ container: anim, renderer: 'svg', loop: true, autoplay: true, path: 'assets/img/preloader.json' });
+      if (anim) {
+        var lot = document.createElement('script');
+        lot.src = 'assets/js/lottie-light.min.js';
+        lot.onload = function () {
+          if (window.lottie && document.body.contains(anim)) {
+            anim.innerHTML = '';
+            window.lottie.loadAnimation({ container: anim, renderer: 'svg', loop: true, autoplay: true, path: 'assets/img/preloader.json' });
+          }
+        };
+        document.head.appendChild(lot);
       }
       window.addEventListener('load', function () { setTimeout(hide, 700); });
       setTimeout(hide, 2500); /* Fallback */

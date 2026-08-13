@@ -365,7 +365,6 @@ def build_index():
 
     body = f"""
 <div class="preloader" id="preloader" aria-hidden="true"><div class="preloader-anim" id="preloaderAnim"><div class="preloader-dot"></div></div></div>
-<script src="/assets/js/lottie-light.min.js" defer></script>
 <section class="hero" id="start">
   <div class="container hero-grid">
     <div>
@@ -535,7 +534,7 @@ def build_index():
           <div class="vs-law-body">(1) Wer gewerbsmäßig für andere Personen, ohne von ihnen auf Grund eines Vertragsverhältnisses ständig damit betraut zu sein, die Vermittlung von Verträgen über Anschaffung oder Veräußerung von Waren oder Wertpapieren, über Versicherungen, Güterbeförderungen, Schiffsmiete oder sonstige Gegenstände des Handelsverkehrs übernimmt, hat die Rechte und Pflichten eines Handelsmaklers.</div>
         </details>
         {mk}
-        <img class="vs-underline" src="/assets/img/underline.svg" alt="" loading="lazy">
+        <img class="vs-underline" src="/assets/img/underline.svg" alt="" width="340" height="20" loading="lazy">
       </div>
       <div class="vs-card reveal reveal-d1">
         <h3>Vertreter</h3>

@@ -193,7 +193,7 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 @media (min-width: 992px) { .hero { padding-block: 72px 88px; } }
 .hero-grid { display: grid; gap: 48px; align-items: center; }
 @media (min-width: 992px) { .hero-grid { grid-template-columns: 1fr 1fr; gap: 56px; } }
-.hero-label { color: #c4c5c8; font-weight: 600; letter-spacing: 3px; font-size: 13px; text-transform: uppercase; margin-bottom: 16px; }
+.hero-label { color: #6f7175; font-weight: 600; letter-spacing: 3px; font-size: 13px; text-transform: uppercase; margin-bottom: 16px; }
 .hero h1 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); font-weight: 600; color: var(--h1); margin-bottom: 20px; }
 .hero h1 strong { font-weight: 800; color: var(--blue); }
 .hero-sub { font-size: 20px; font-weight: 300; color: var(--muted); margin-bottom: 28px; }
@@ -236,15 +236,16 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 @keyframes slide-in-left { from { opacity: 0; transform: translateX(-56px); } to { opacity: 1; transform: none; } }
 .slide-head { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
 .slide-head .g-logo { width: 20px; height: 20px; }
-.slide-verified { font-size: 12px; color: #9aa0a6; white-space: nowrap; }
+.slide-verified { font-size: 12px; color: #6b7178; white-space: nowrap; }
 .slide .stars { height: 18px; width: auto; }
 .slide-text { font-size: 14px; line-height: 1.45; color: #6b6b6b; margin-bottom: 11px; }
 .slide-person { display: flex; align-items: center; gap: 10px; }
 .slide-person img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; }
 .slide-person span { font-weight: 600; font-size: 14px; color: var(--h1); }
-.slider-dots { display: flex; align-items: center; justify-content: center; gap: 9px; margin-top: 18px; }
-.slider-dot { width: 8px; height: 8px; border-radius: 50%; background: #d0d5dd; padding: 0; transition: background .2s, transform .2s; }
-.slider-dot.active { background: #3b3b3b; transform: scale(1.2); }
+.slider-dots { display: flex; align-items: center; justify-content: center; gap: 0; margin-top: 12px; }
+.slider-dot { width: 24px; height: 24px; padding: 0; background: none; border-radius: 50%; display: grid; place-items: center; }
+.slider-dot::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #d0d5dd; transition: background .2s, transform .2s; }
+.slider-dot.active::before { background: #3b3b3b; transform: scale(1.2); }
 .slider-arrow {
   position: absolute; top: 50%; transform: translateY(-50%); z-index: 3;
   background: none; border: none; box-shadow: none; padding: 6px;
@@ -464,7 +465,7 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .page-hero h1 { color: #fff; font-weight: 700; font-size: clamp(1.8rem, 4.5vw, 2.6rem); margin-bottom: 14px; }
 .page-hero p { color: rgba(255, 255, 255, .82); max-width: 680px; margin-inline: auto; font-size: 1.2em; font-weight: 500; }
 .page-hero p strong { color: #fff; }
-.page-hero .hero-label { color: rgba(255, 255, 255, .75); }
+.page-hero .hero-label { color: #fff; }
 .page-hero .btn { border-color: transparent; }
 .page-hero .btn--ghost { border-color: #e5e5e5; }
 
