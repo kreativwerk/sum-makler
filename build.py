@@ -575,7 +575,7 @@ def build_index():
     page(
         path="index.html", active="start",
         title="Schneider & Musil | Unabhängige Versicherungsmakler Nürnberg & Fürth",
-        desc="Deine unabhängigen Versicherungsmakler aus der Metropolregion Nürnberg. Persönliche & kostenfreie Beratung – 100% unabhängig, vollständig digital. Jetzt Termin buchen!",
+        desc="Deine unabhängigen Versicherungsmakler aus Nürnberg & Fürth. Persönliche, kostenfreie Beratung – 100% unabhängig & digital. Jetzt Termin buchen!",
         body=body, extra_ld=[faq_ld_home],
     )
 
@@ -660,7 +660,7 @@ def build_sparten_index():
     page(
         path="sparten/index.html",
         title="Versicherungssparten im Überblick | Schneider & Musil",
-        desc="Alle Versicherungssparten im Überblick: Sach & KFZ, Wohnung & Haus, Pflege & Krankheit, Rente & Vorsorge. Unabhängige Beratung von Schneider & Musil aus Fürth.",
+        desc="Alle Versicherungssparten im Überblick: Sach & KFZ, Wohnung & Haus, Pflege & Krankheit, Rente & Vorsorge. Unabhängige Beratung aus Nürnberg & Fürth.",
         body=body,
         extra_ld=[breadcrumb_ld([("Start", BASE + "/"), ("Sparten", BASE + "/sparten/")])],
     )
