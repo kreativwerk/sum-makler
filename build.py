@@ -261,8 +261,10 @@ def cta_buttons():
   <a href="tel:+4991137758430" class="btn btn--ghost">{PHONE_BTN}Jetzt anrufen</a>
 </div>"""
 
-CHECK_SVG = ('<svg class="check-circle" viewBox="0 0 30 30" aria-hidden="true">'
-             '<circle cx="15" cy="15" r="15"/><path d="M8.5 15.5l4.5 4.5 8.5-9"/></svg>')
+CHECK_SVG = ('<svg class="check-circle" viewBox="0 0 40 40" aria-hidden="true">'
+             '<circle class="halo" cx="20" cy="20" r="20"/>'
+             '<circle class="ring" cx="20" cy="20" r="12.5"/>'
+             '<path class="tick" d="M14 20.5l4.5 4.5 9.5-10.5"/></svg>')
 
 TESTIMONIALS = [
     ("Super Beratung mit flexibler Kommunikation. Seit mehreren Jahren Kunde – kann mir sicher sein, immer das beste Angebot zu bekommen – Vertrauenspartner!", "Hannahnas13", "avatar-hannah-160.webp"),
@@ -358,8 +360,8 @@ def build_index():
     ]
     vorteile_html = ""
     for i, (t, txt, points) in enumerate(vorteile):
-        pts = "".join(f'<div class="vorteil-point"><img src="/assets/img/check-blau.svg" alt="" width="20" height="20" loading="lazy">{e(p)}</div>' for p in points)
-        vorteile_html += f'<div class="vorteil-card" style="--i:{i}"><h3>{e(t)}</h3><p>{e(txt)}</p>{pts}</div>'
+        pts = "".join(f'<div class="vorteil-point"><img src="/assets/img/check-ring.svg" alt="" width="24" height="24" loading="lazy">{e(p)}</div>' for p in points)
+        vorteile_html += f'<div class="vorteil-card" style="--i:{i}"><h3>{e(t)}</h3><p>{e(txt)}</p><div class="vorteil-points">{pts}</div></div>'
 
     body = f"""
 <div class="preloader" id="preloader" aria-hidden="true"><div class="preloader-dot"></div></div>
@@ -404,11 +406,13 @@ def build_index():
     <source data-src="/assets/video/hero-desktop.mp4" type="video/mp4">
   </video>
   <div class="container video-content">
-    <h2>Wir versichern Dich.<br><strong>persönlich &amp; digital</strong></h2>
-    <p>Buche jetzt einen Termin für eine<br><strong>persönliche &amp; kostenfreie</strong> Beratung!</p>
-    <div class="cta-row">
-      <a href="/termin/" class="btn">{ARROW_BTN}Termin buchen</a>
-      <a href="#app" class="btn btn--ghost">{ARROW_BTN}Unsere App</a>
+    <div class="video-text">
+      <h2>Wir versichern Dich.<br><strong>persönlich &amp; digital</strong></h2>
+      <p>Buche jetzt einen Termin für eine<br><strong>persönliche &amp; kostenfreie</strong> Beratung!</p>
+      <div class="cta-row">
+        <a href="/termin/" class="btn">{ARROW_BTN}Termin buchen</a>
+        <a href="#app" class="btn btn--ghost">{ARROW_BTN}Unsere App</a>
+      </div>
     </div>
   </div>
 </section>
@@ -478,24 +482,26 @@ def build_index():
 </section>
 
 <section class="section team-section" id="team">
-  <div class="container team-vorteile">
-    <div class="team-col">
+  <div class="container">
+    <div class="team-intro">
       <h2 class="split-head">Unser Team</h2>
-      <div class="team-member reveal">
-        <img src="/assets/img/team-max-400.webp" width="128" height="128" loading="lazy" alt="Maximilian Schneider, Versicherungsfachmann (IHK)">
-        <div><h3>Maximilian Schneider</h3><p>Versicherungsfachmann (IHK)</p></div>
-      </div>
-      <div class="team-member reveal reveal-d1">
-        <img src="/assets/img/team-marco-400.webp" width="128" height="128" loading="lazy" alt="Marco Musil, Diplom Betriebswirt (FH)">
-        <div><h3>Marco Musil</h3><p>Diplom Betriebswirt (FH)</p></div>
-      </div>
-      <div class="team-member reveal reveal-d2">
-        <img src="/assets/img/team-justin-400.webp" width="128" height="128" loading="lazy" alt="Justin Duensing, Office Manager">
-        <div><h3>Justin Duensing</h3><p>Office Manager</p></div>
+      <div class="team-row">
+        <div class="team-member reveal">
+          <img src="/assets/img/team-max-400.webp" width="128" height="128" loading="lazy" alt="Maximilian Schneider, Versicherungsfachmann (IHK)">
+          <div><h3>Maximilian Schneider</h3><p>Versicherungsfachmann (IHK)</p></div>
+        </div>
+        <div class="team-member reveal reveal-d1">
+          <img src="/assets/img/team-marco-400.webp" width="128" height="128" loading="lazy" alt="Marco Musil, Diplom Betriebswirt (FH)">
+          <div><h3>Marco Musil</h3><p>Diplom Betriebswirt (FH)</p></div>
+        </div>
+        <div class="team-member reveal reveal-d2">
+          <img src="/assets/img/team-justin-400.webp" width="128" height="128" loading="lazy" alt="Justin Duensing, Office Manager">
+          <div><h3>Justin Duensing</h3><p>Office Manager</p></div>
+        </div>
       </div>
     </div>
-    <div>
-      <h2 class="split-head">Unsere Vorteile</h2>
+    <div class="vorteile-wrap">
+      <h2 class="split-head vorteile-title">Deine Vorteile</h2>
       <div class="vorteile-grid">
         {vorteile_html}
         <div class="vorteil-card kontakt-card" style="--i:4">
