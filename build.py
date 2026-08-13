@@ -284,13 +284,13 @@ def slider_html():
     <span>{e(name)}</span>
   </div>
 </article>"""
+    chev_l = '<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4l-8 8 8 8"/></svg>'
+    chev_r = '<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4l8 8-8 8"/></svg>'
     return f"""<div class="slider" data-slider aria-label="Google Bewertungen">
+  <button class="slider-arrow slider-arrow--prev" data-prev aria-label="Vorherige Bewertung">{chev_l}</button>
   <div class="slide-track">{slides}</div>
-  <div class="slider-nav">
-    <button class="slider-arrow" data-prev aria-label="Vorherige Bewertung">&larr;</button>
-    <div class="slider-dots" style="display:flex;gap:8px"></div>
-    <button class="slider-arrow" data-next aria-label="Nächste Bewertung">&rarr;</button>
-  </div>
+  <button class="slider-arrow slider-arrow--next" data-next aria-label="Nächste Bewertung">{chev_r}</button>
+  <div class="slider-dots"></div>
 </div>"""
 
 # ================================================================ INDEX
@@ -366,6 +366,12 @@ def build_index():
       <h1>Wir sind Deine <strong>unabhängigen</strong> Versicherungsmakler aus der Metropolregion Nürnberg</h1>
       <p class="hero-sub">Buche jetzt einen Termin für eine <strong>persönliche &amp; kostenfreie</strong> Beratung!</p>
       {cta_buttons()}
+      <div class="rating">
+        <strong>5,0</strong>
+        <img class="stars" src="/assets/img/sterne-5.svg" alt="5 von 5 Sternen bei Google" width="110" height="20">
+        <span class="rating-count">185 Google Rezensionen</span>
+        <img class="badge" src="/assets/img/google-badge-160.webp" srcset="/assets/img/google-badge-160.webp 1x, /assets/img/google-badge-320.webp 2x" alt="Google" width="66" height="44" loading="lazy">
+      </div>
     </div>
     <div class="hero-visual">
       <div class="photo-wrap">
@@ -375,12 +381,6 @@ def build_index():
              sizes="(min-width: 992px) 45vw, 90vw" width="723" height="669" fetchpriority="high"
              alt="Marco Musil und Maximilian Schneider – unabhängige Versicherungsmakler aus der Metropolregion Nürnberg">
         {slider_html()}
-      </div>
-      <div class="rating">
-        <img class="badge" src="/assets/img/google-badge-160.webp" srcset="/assets/img/google-badge-160.webp 1x, /assets/img/google-badge-320.webp 2x" alt="Google" width="66" height="44" loading="lazy">
-        <strong>5,0</strong>
-        <img class="stars" src="/assets/img/sterne-5.svg" alt="5 von 5 Sternen bei Google" width="110" height="20">
-        <span class="rating-count">185 Rezensionen</span>
       </div>
     </div>
   </div>
