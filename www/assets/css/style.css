@@ -254,7 +254,7 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 }
 .slider-arrow--prev { left: -48px; }
 .slider-arrow--next { right: -48px; }
-@media (max-width: 991px) { .slider-arrow--prev { left: -10px; } .slider-arrow--next { right: -10px; } }
+@media (max-width: 991px) { .slider-arrow { display: none; } }
 .slider-arrow:hover { color: #6b7280; transform: translateY(-50%) scale(1.12); }
 
 /* ---------- Feature-Leiste (Original: weiß) ---------- */
@@ -265,6 +265,7 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   box-shadow: 0 10px 30px rgba(16, 24, 40, .05); padding: 26px 24px;
 }
 @media (min-width: 768px) { .feature-bar-inner { flex-direction: row; gap: 0; border-radius: 999px; padding: 30px 28px; } }
+@media (max-width: 767.98px) { .feature-bar-inner { align-items: flex-start; width: fit-content; margin-inline: auto; padding: 26px 32px; } }
 .feature-item { display: flex; align-items: center; gap: 14px; font-weight: 500; color: var(--h1); font-size: 1.1em; }
 @media (min-width: 768px) {
   .feature-item { padding-inline: 40px; }
