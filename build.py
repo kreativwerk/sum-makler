@@ -277,7 +277,11 @@ def slider_html():
     slides = ""
     for i, (text, name, img) in enumerate(TESTIMONIALS):
         slides += f"""<article class="slide{' active' if i == 0 else ''}">
-  <img class="stars" src="/assets/img/sterne-5.svg" alt="5 von 5 Sternen" width="110" height="18" loading="lazy">
+  <div class="slide-head">
+    <img class="g-logo" src="/assets/img/google-g.svg" alt="Google" width="20" height="20" loading="lazy">
+    <img class="stars" src="/assets/img/sterne-5.svg" alt="5 von 5 Sternen" width="110" height="18" loading="lazy">
+    <span class="slide-verified">von Google verifiziert</span>
+  </div>
   <p class="slide-text">{e(text)}</p>
   <div class="slide-person">
     <img src="/assets/img/{img}" alt="" width="38" height="38" loading="lazy">
