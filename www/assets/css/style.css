@@ -200,6 +200,7 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .hero-sub { font-size: 20px; font-weight: 300; color: var(--muted); margin-bottom: 28px; }
 .hero-sub strong { color: var(--h1); font-weight: 700; }
 .cta-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 32px; }
+.cta-row .btn { min-width: 212px; }
 .rating { display: flex; align-items: center; flex-wrap: nowrap; gap: 12px; color: #444; font-weight: 400; }
 .rating strong { font-size: 1.15rem; font-weight: 600; }
 .rating .stars { height: 17px; width: auto; }
