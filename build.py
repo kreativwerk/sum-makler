@@ -253,7 +253,7 @@ def kontakt_section(topic=None):
 </section>"""
 
 ARROW_BTN = '<span class="btn-icon"><img src="/assets/img/arrow.svg" alt="" width="16" height="16"></span>'
-PHONE_BTN = '<span class="btn-icon"><img src="/assets/img/icon-phone-call.svg" alt="" width="16" height="16"></span>'
+PHONE_BTN = '<span class="btn-icon btn-icon--phone"><img src="/assets/img/icon-phone-call.svg" alt="" width="16" height="16"></span>'
 
 def cta_buttons():
     return f"""<div class="cta-row">

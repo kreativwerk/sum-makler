@@ -92,8 +92,9 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .btn--ghost { background: #fff; color: #141414; border-color: #e5e5e5; }
 .btn--ghost:hover { box-shadow: 0 10px 24px rgba(16, 24, 40, .15); }
 .btn--ghost .btn-icon { background: #f2f2f2; border: 1px solid #ececec; }
-.btn--ghost .btn-icon img { width: 20px; height: 20px; filter: invert(.28); }
-.btn--ghost:hover .btn-icon { transform: rotate(135deg); }
+.btn--ghost .btn-icon img { width: 15px; height: 15px; filter: invert(.28); }
+.btn--ghost .btn-icon--phone img { width: 20px; height: 20px; }
+.btn--ghost:hover .btn-icon--phone { transform: rotate(135deg); }
 .btn--solid { padding: 5px 26px; font-weight: 400; letter-spacing: 1px; }
 .btn--solid img { width: 20px; height: 20px; }
 
