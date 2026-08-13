@@ -13,6 +13,11 @@
       pre.remove();
     } else {
       sessionStorage.setItem('sumPreloaded', '1');
+      var anim = document.getElementById('preloaderAnim');
+      if (window.lottie && anim) {
+        anim.innerHTML = '';
+        window.lottie.loadAnimation({ container: anim, renderer: 'svg', loop: true, autoplay: true, path: 'assets/img/preloader.json' });
+      }
       window.addEventListener('load', function () { setTimeout(hide, 700); });
       setTimeout(hide, 2500); /* Fallback */
     }

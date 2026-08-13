@@ -364,7 +364,8 @@ def build_index():
         vorteile_html += f'<div class="vorteil-card" style="--i:{i}"><h3>{e(t)}</h3><p>{e(txt)}</p><div class="vorteil-points">{pts}</div></div>'
 
     body = f"""
-<div class="preloader" id="preloader" aria-hidden="true"><div class="preloader-dot"></div></div>
+<div class="preloader" id="preloader" aria-hidden="true"><div class="preloader-anim" id="preloaderAnim"><div class="preloader-dot"></div></div></div>
+<script src="/assets/js/lottie-light.min.js" defer></script>
 <section class="hero" id="start">
   <div class="container hero-grid">
     <div>
