@@ -70,9 +70,9 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 /* ---------- Buttons (Original: button-5 / arrow-circle) ---------- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  background: var(--blue); color: #fff; font-weight: 500; font-size: 14px;
+  background: var(--blue); color: #fff; font-weight: 500; font-size: 15px;
   border: 1px solid #fff;
-  min-height: 46px; padding: 5px 22px 5px 5px; border-radius: 50px;
+  min-height: 52px; padding: 6px 26px 6px 6px; border-radius: 50px;
   backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
   box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
   transition: transform .25s ease, box-shadow .25s ease;
@@ -80,16 +80,17 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 }
 .btn:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 10px 24px rgba(36, 94, 237, .35); }
 .btn .btn-icon {
-  width: 34px; height: 34px; flex: none; border-radius: 50%;
+  width: 38px; height: 38px; flex: none; border-radius: 50%;
   background: linear-gradient(var(--circle-blue), var(--circle-blue));
   display: grid; place-items: center;
   transition: transform .35s ease;
 }
 .btn:hover .btn-icon { transform: rotate(45deg); }
-.btn .btn-icon img { width: 13px; height: 13px; }
+.btn .btn-icon img { width: 15px; height: 15px; }
 .btn--ghost { background: #fff; color: #141414; border-color: #e5e5e5; }
 .btn--ghost:hover { box-shadow: 0 10px 24px rgba(16, 24, 40, .15); }
-.btn--ghost .btn-icon { background: #fff; border: 1px solid #dcdfe4; }
+.btn--ghost .btn-icon { background: #f2f2f2; border: 1px solid #ececec; }
+.btn--ghost .btn-icon img { width: 18px; height: 18px; filter: invert(.28); }
 .btn--solid { padding: 5px 26px; font-weight: 400; letter-spacing: 1px; }
 .btn--solid img { width: 20px; height: 20px; }
 
@@ -212,21 +213,21 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 
 /* Testimonial-Karte (Original: weiß, Radius 11px, Schatten, Text #909090 14px) */
 .slider { position: relative; z-index: 2; max-width: 420px; margin: -72px auto 0; }
-@media (min-width: 992px) { .slider { position: absolute; left: 50%; transform: translateX(-50%); bottom: -90px; margin: 0; width: 440px; } }
+@media (min-width: 992px) { .slider { position: absolute; left: 50%; transform: translateX(-50%); bottom: -78px; margin: 0; width: 470px; } }
 .slide-track { position: relative; }
 .slide {
   background: #fff; border-radius: 16px; box-shadow: 0 12px 40px rgba(16, 24, 40, .13);
-  padding: 26px 30px; display: none;
+  padding: 18px 26px; display: none;
 }
 .slide.active { display: block; animation: slide-in .8s cubic-bezier(.22, .61, .36, 1); }
 .slide.active.from-left { animation-name: slide-in-left; }
 @keyframes slide-in { from { opacity: 0; transform: translateX(56px); } to { opacity: 1; transform: none; } }
 @keyframes slide-in-left { from { opacity: 0; transform: translateX(-56px); } to { opacity: 1; transform: none; } }
-.slide .stars { height: 22px; width: auto; margin-bottom: 12px; }
-.slide-text { font-size: 15px; line-height: 1.5; color: #6b6b6b; margin-bottom: 16px; }
-.slide-person { display: flex; align-items: center; gap: 12px; }
-.slide-person img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
-.slide-person span { font-weight: 600; font-size: 15px; color: var(--h1); }
+.slide .stars { height: 18px; width: auto; margin-bottom: 9px; }
+.slide-text { font-size: 14px; line-height: 1.45; color: #6b6b6b; margin-bottom: 11px; }
+.slide-person { display: flex; align-items: center; gap: 10px; }
+.slide-person img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; }
+.slide-person span { font-weight: 600; font-size: 14px; color: var(--h1); }
 .slider-dots { display: flex; align-items: center; justify-content: center; gap: 9px; margin-top: 18px; }
 .slider-dot { width: 8px; height: 8px; border-radius: 50%; background: #d0d5dd; padding: 0; transition: background .2s, transform .2s; }
 .slider-dot.active { background: #3b3b3b; transform: scale(1.2); }
