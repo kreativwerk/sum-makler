@@ -630,7 +630,7 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .wa-fab-text { display: flex; flex-direction: column; line-height: 1.2; padding-right: 16px; }
 .wa-fab-text strong { font-size: 1rem; font-weight: 700; }
 .wa-fab-text span { font-size: .78rem; opacity: .92; }
-@media (min-width: 768px) { .wa-fab { bottom: 28px; } }
+@media (min-width: 768px) { .wa-fab { left: auto; right: 28px; bottom: 28px; margin-inline: 0; } }
 @media (max-width: 767.98px) {
   .wa-fab { bottom: 16px; padding: 6px; gap: 10px; }
   .wa-fab-icon { width: 44px; height: 44px; }
