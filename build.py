@@ -86,6 +86,11 @@ def header(active=""):
   </nav>
 </header>"""
 
+WA_FAB = """<a href="https://wa.me/message/N5OLZTL577ELP1" rel="noopener" class="wa-fab" aria-label="Per WhatsApp schreiben">
+  <span class="wa-fab-icon"><img src="/assets/img/icon-whatsapp.svg" alt="" width="28" height="28"></span>
+  <span class="wa-fab-text"><strong>WhatsApp</strong><span>Jetzt direkt schreiben</span></span>
+</a>"""
+
 FOOTER = f"""<footer class="site-footer">
   <div class="container">
     <div class="footer-top">
@@ -214,6 +219,7 @@ def page(*, path, title, desc, body, active="", og_image="/assets/img/og-home.jp
 {body}
 </main>
 {FOOTER}
+{WA_FAB}
 </body>
 </html>"""
     # Interne Links relativ machen, damit die Seite aus jedem (Unter-)Verzeichnis läuft
@@ -249,7 +255,7 @@ def kontakt_section(topic=None):
             <img src="/assets/img/icon-tel.svg" alt="" width="20" height="20" loading="lazy">
             <strong>Anrufen</strong><span>+49 (911) 37758430</span>
           </a>
-          <a href="https://wa.me/message/N5OLZTL577ELP1" rel="noopener" class="kontakt-tile">
+          <a href="https://wa.me/message/N5OLZTL577ELP1" rel="noopener" class="kontakt-tile kontakt-tile--wa">
             <img src="/assets/img/icon-whatsapp.svg" alt="" width="20" height="20" loading="lazy">
             <strong>WhatsApp</strong><span>direkt schreiben</span>
           </a>
@@ -521,7 +527,7 @@ def build_index():
           <p>Wie Du uns erreichen kannst:</p>
           <div class="kontakt-links">
             <a href="tel:+4991137758430"><img src="/assets/img/icon-tel.svg" alt="" width="24" height="24" loading="lazy">Telefon</a>
-            <a href="https://wa.me/message/N5OLZTL577ELP1" rel="noopener"><img src="/assets/img/icon-whatsapp.svg" alt="" width="24" height="24" loading="lazy">WhatsApp</a>
+            <a href="https://wa.me/message/N5OLZTL577ELP1" rel="noopener" class="kontakt-link--wa"><img src="/assets/img/icon-whatsapp.svg" alt="" width="24" height="24" loading="lazy">WhatsApp</a>
             <a href="mailto:info@sum-makler.de?subject=Unverbindliche%20Anfrage"><img src="/assets/img/icon-mail.svg" alt="" width="24" height="24" loading="lazy">E-Mail</a>
           </div>
           <a href="/termin/" class="btn">{ARROW_BTN}Termin buchen</a>
