@@ -615,7 +615,8 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 /* ---------- WhatsApp (schwebender Button + Hervorhebung) ---------- */
 :root { --wa-green: #25d366; --wa-green-dark: #1da851; }
 .wa-fab {
-  position: fixed; right: 20px; bottom: 20px; z-index: 90;
+  position: fixed; left: 0; right: 0; bottom: 20px; z-index: 90;
+  width: max-content; margin-inline: auto;
   display: flex; align-items: center; gap: 12px;
   padding: 8px; border-radius: 50px;
   background: var(--wa-green); color: #fff;
@@ -629,9 +630,9 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .wa-fab-text { display: flex; flex-direction: column; line-height: 1.2; padding-right: 16px; }
 .wa-fab-text strong { font-size: 1rem; font-weight: 700; }
 .wa-fab-text span { font-size: .78rem; opacity: .92; }
-@media (min-width: 768px) { .wa-fab { right: 28px; bottom: 28px; } }
+@media (min-width: 768px) { .wa-fab { bottom: 28px; } }
 @media (max-width: 767.98px) {
-  .wa-fab { right: 16px; bottom: 16px; padding: 6px; gap: 10px; }
+  .wa-fab { bottom: 16px; padding: 6px; gap: 10px; }
   .wa-fab-icon { width: 44px; height: 44px; }
   .wa-fab-text strong { font-size: .95rem; }
   .wa-fab-text span { font-size: .72rem; }
