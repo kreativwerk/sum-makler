@@ -135,9 +135,12 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 @media (min-width: 992px) { .lang-switch { margin-left: 16px; } }
 
 @media (max-width: 991.98px) {
+  /* Bottom-Sheet: nur so hoch wie nötig, unten ausgerichtet */
   .nav-menu {
-    position: fixed; inset: var(--nav-h) 0 0 0; background: #fff;
-    padding: 24px 20px 120px; overflow-y: auto;
+    position: fixed; left: 0; right: 0; bottom: 0; top: auto;
+    max-height: calc(100dvh - var(--nav-h) - 12px); background: #fff;
+    border-radius: 24px 24px 0 0; box-shadow: 0 -12px 40px rgba(16, 24, 40, .22);
+    padding: 22px 20px 100px; overflow-y: auto; overscroll-behavior: contain;
     display: flex; flex-direction: column; align-items: stretch; gap: 0;
     /* Aufklappen von unten nach oben (vom Menü-Button aus) */
     visibility: hidden; clip-path: inset(100% 0 0 0);
@@ -149,6 +152,12 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   }
   .nav-menu > * { opacity: 0; transform: translateY(24px); transition: opacity .25s ease, transform .35s ease; }
   .nav-open .nav-menu > * { opacity: 1; transform: none; transition-delay: .12s; }
+  .nav-menu::before { content: ""; flex: none; align-self: center; width: 44px; height: 5px; border-radius: 5px; background: #d0d5dd; margin: -8px auto 10px; }
+  body::after {
+    content: ""; position: fixed; inset: 0; z-index: 99; background: rgba(16, 24, 40, .4);
+    opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility 0s linear .3s;
+  }
+  body.nav-open::after { opacity: 1; visibility: visible; transition: opacity .3s ease, visibility 0s; }
   @media (prefers-reduced-motion: reduce) {
     .nav-menu, .nav-open .nav-menu, .nav-menu > *, .nav-open .nav-menu > * { transition: none; }
   }

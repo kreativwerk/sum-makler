@@ -84,6 +84,13 @@
     document.querySelectorAll('.nav-menu a').forEach(function (a) {
       a.addEventListener('click', function () { setNav(false); });
     });
+    /* Tipp außerhalb des Menüs (abgedunkelter Hintergrund) schließt es */
+    document.addEventListener('click', function (e) {
+      if (document.body.classList.contains('nav-open') &&
+          !e.target.closest('.nav-menu') && !e.target.closest('.fab-dock') && !e.target.closest('.site-header')) {
+        setNav(false);
+      }
+    });
   }
 
   /* Mega menu (Sparten) – click toggles, outside click closes */
