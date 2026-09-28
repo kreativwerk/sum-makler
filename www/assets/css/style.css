@@ -141,20 +141,27 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
     flex-direction: column; align-items: stretch; gap: 0;
   }
   .nav-open .nav-menu { display: flex; }
-  .nav-link { display: block; padding: 14px 4px; font-size: 1.15rem; font-weight: 600; color: var(--gray600); border-bottom: 1px solid #f2f4f7; }
-  .nav-cta { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+  .nav-link { display: block; padding: 14px 4px; font-size: 1.15rem; font-weight: 600; color: var(--gray600); border-bottom: 1px solid #f2f4f7; text-align: center; }
+  .nav-cta { margin-top: 36px; display: flex; flex-direction: row; justify-content: center; gap: 12px; }
+  .nav-cta a {
+    flex: 1 1 0; max-width: 200px; min-height: 50px; display: flex; align-items: center; justify-content: center;
+    padding: 10px 14px; border-radius: var(--radius-pill); font-family: 'Montserrat', sans-serif;
+    font-weight: 600; font-size: .92rem; text-align: center; line-height: 1.2;
+  }
+  .nav-portal { border: 1px solid #d0d5dd; color: var(--ink); background: #fff; }
+  .nav-book { background: var(--blue); color: #fff; border: 1px solid var(--blue); box-shadow: 0 6px 16px rgba(36, 94, 237, .3); }
   .nav-social { display: flex; gap: 18px; margin-top: 28px; justify-content: center; }
   .nav-social img { width: 28px; height: 28px; }
   .mega { border-bottom: 1px solid #f2f4f7; }
-  .mega > button { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 14px 4px; font-size: 1.15rem; font-weight: 600; color: var(--gray600); }
+  .mega > button { width: 100%; display: flex; justify-content: center; gap: 8px; align-items: center; padding: 14px 4px; font-size: 1.15rem; font-weight: 600; color: var(--gray600); }
   .mega > button svg { transition: transform .3s; }
   .mega.open > button svg { transform: rotate(180deg); }
   .mega-panel { display: none; padding: 8px 0 20px; }
   .mega.open .mega-panel { display: block; }
-  .mega-col { margin-bottom: 18px; }
-  .mega-col-head { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .mega-col { margin-bottom: 18px; text-align: center; }
+  .mega-col-head { display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
   .mega-col-head img { width: 30px; height: 30px; }
-  .mega-col a { display: block; padding: 6px 0 6px 40px; color: var(--gray600); font-size: .95rem; }
+  .mega-col a { display: block; padding: 6px 0; color: var(--gray600); font-size: .95rem; }
 }
 
 @media (min-width: 992px) {
