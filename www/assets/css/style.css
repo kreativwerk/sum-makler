@@ -139,15 +139,15 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
     position: fixed; inset: var(--nav-h) 0 0 0; background: #fff;
     padding: 24px 20px 120px; overflow-y: auto;
     display: flex; flex-direction: column; align-items: stretch; gap: 0;
-    /* Aufklappen von oben nach unten */
-    visibility: hidden; clip-path: inset(0 0 100% 0);
+    /* Aufklappen von unten nach oben (vom Menü-Button aus) */
+    visibility: hidden; clip-path: inset(100% 0 0 0);
     transition: clip-path .35s ease, visibility 0s linear .35s;
   }
   .nav-open .nav-menu {
     visibility: visible; clip-path: inset(0 0 0 0);
     transition: clip-path .45s cubic-bezier(.2, .8, .2, 1), visibility 0s;
   }
-  .nav-menu > * { opacity: 0; transform: translateY(-14px); transition: opacity .25s ease, transform .35s ease; }
+  .nav-menu > * { opacity: 0; transform: translateY(24px); transition: opacity .25s ease, transform .35s ease; }
   .nav-open .nav-menu > * { opacity: 1; transform: none; transition-delay: .12s; }
   @media (prefers-reduced-motion: reduce) {
     .nav-menu, .nav-open .nav-menu, .nav-menu > *, .nav-open .nav-menu > * { transition: none; }
