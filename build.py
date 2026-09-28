@@ -140,7 +140,7 @@ def header(active="", url_de="/", url_en="/en/"):
 def fab_dock():
     """Floating dock: menu button (mobile only) + WhatsApp button."""
     return f"""<div class="fab-dock">
-  <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" data-label-open="{T('Menü', 'Menu')}" data-label-close="{T('Schließen', 'Close')}"><span class="nav-toggle-icon" aria-hidden="true"></span><span class="nav-toggle-label">{T('Menü', 'Menu')}</span></button>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="{T('Menü', 'Menu')}"><span class="nav-toggle-icon" aria-hidden="true"></span><span class="nav-toggle-label">{T('Menü', 'Menu')}</span></button>
   <a href="https://wa.me/message/N5OLZTL577ELP1" rel="noopener" class="wa-fab" aria-label="{T('Per WhatsApp schreiben', 'Message us on WhatsApp')}">
     <span class="wa-fab-icon"><img src="/assets/img/icon-whatsapp.svg" alt="" width="28" height="28"></span>
     <span class="wa-fab-text"><strong>WhatsApp</strong><span>{T('Jetzt direkt schreiben', 'Message us now')}</span></span>

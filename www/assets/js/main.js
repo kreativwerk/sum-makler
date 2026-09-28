@@ -70,13 +70,11 @@
 
   /* Mobile nav toggle (schwebender Menü-Button unten) */
   var toggle = document.querySelector('.nav-toggle');
-  var toggleLabel = toggle && toggle.querySelector('.nav-toggle-label');
   var setNav = function (open) {
     document.body.classList.toggle('nav-open', open);
     document.body.style.overflow = open ? 'hidden' : '';
     if (toggle) {
       toggle.setAttribute('aria-expanded', open);
-      if (toggleLabel) toggleLabel.textContent = toggle.dataset[open ? 'labelClose' : 'labelOpen'];
     }
   };
   if (toggle) {

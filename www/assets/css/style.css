@@ -138,9 +138,20 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   .nav-menu {
     position: fixed; inset: var(--nav-h) 0 0 0; background: #fff;
     padding: 24px 20px 120px; overflow-y: auto;
-    flex-direction: column; align-items: stretch; gap: 0;
+    display: flex; flex-direction: column; align-items: stretch; gap: 0;
+    /* Aufklappen von oben nach unten */
+    visibility: hidden; clip-path: inset(0 0 100% 0);
+    transition: clip-path .35s ease, visibility 0s linear .35s;
   }
-  .nav-open .nav-menu { display: flex; }
+  .nav-open .nav-menu {
+    visibility: visible; clip-path: inset(0 0 0 0);
+    transition: clip-path .45s cubic-bezier(.2, .8, .2, 1), visibility 0s;
+  }
+  .nav-menu > * { opacity: 0; transform: translateY(-14px); transition: opacity .25s ease, transform .35s ease; }
+  .nav-open .nav-menu > * { opacity: 1; transform: none; transition-delay: .12s; }
+  @media (prefers-reduced-motion: reduce) {
+    .nav-menu, .nav-open .nav-menu, .nav-menu > *, .nav-open .nav-menu > * { transition: none; }
+  }
   .nav-link { display: block; padding: 14px 4px; font-size: 1.15rem; font-weight: 600; color: var(--gray600); border-bottom: 1px solid #f2f4f7; text-align: center; }
   .nav-cta { margin-top: 36px; display: flex; flex-direction: row; justify-content: center; gap: 12px; }
   .nav-cta a {
