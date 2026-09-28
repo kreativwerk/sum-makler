@@ -6,9 +6,13 @@
 <title>Beratungstermin buchen | Schneider &amp; Musil Versicherungsmakler</title>
 <meta name="description" content="Vereinbare jetzt Deinen unverbindlichen Beratungstermin – online, telefonisch oder persönlich. Kostenfreie Versicherungsberatung mit Max Schneider oder Marco Musil.">
 <link rel="canonical" href="https://www.sum-makler.de/termin/">
+<link rel="alternate" hreflang="de" href="https://www.sum-makler.de/termin/">
+<link rel="alternate" hreflang="en" href="https://www.sum-makler.de/en/termin/">
+<link rel="alternate" hreflang="x-default" href="https://www.sum-makler.de/termin/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Schneider &amp; Musil Versicherungsmakler">
 <meta property="og:locale" content="de_DE">
+<meta property="og:locale:alternate" content="en_GB">
 <meta property="og:title" content="Beratungstermin buchen | Schneider &amp; Musil Versicherungsmakler">
 <meta property="og:description" content="Vereinbare jetzt Deinen unverbindlichen Beratungstermin – online, telefonisch oder persönlich. Kostenfreie Versicherungsberatung mit Max Schneider oder Marco Musil.">
 <meta property="og:url" content="https://www.sum-makler.de/termin/">
@@ -46,7 +50,7 @@
     "telephone": "+49 911 37758430",
     "email": "info@sum-makler.de",
     "contactType": "customer service",
-    "availableLanguage": "German"
+    "availableLanguage": ["German", "English"]
   },
   "knowsAbout": [
     "Private Krankenversicherung", "Berufsunfähigkeitsversicherung", "Haftpflichtversicherung",
@@ -75,8 +79,7 @@
       <a href="https://www.facebook.com/schneidermusilmakler/" rel="noopener" aria-label="Facebook"><img src="../assets/img/icon-facebook.svg" alt="" width="24" height="24" loading="lazy"></a>
       <a href="https://wa.me/message/N5OLZTL577ELP1" rel="noopener" aria-label="WhatsApp"><img src="../assets/img/icon-wa-round.svg" alt="" width="24" height="24" loading="lazy"></a>
     </div>
-    <button class="nav-toggle" aria-expanded="false" aria-label="Menü öffnen"><span></span></button>
-    <div class="nav-menu">
+    <div class="nav-menu" id="nav-menu">
       <a href="../" class="nav-link">Start</a>
       <a href="../blog/" class="nav-link">Blog</a>
       <a href="../#service" class="nav-link">Service</a>
@@ -94,24 +97,38 @@
         <a href="https://wa.me/message/N5OLZTL577ELP1" rel="noopener" aria-label="WhatsApp"><img src="../assets/img/icon-wa-round.svg" alt="" width="28" height="28" loading="lazy"></a>
       </div>
     </div>
+    <div class="lang-switch" role="group" aria-label="Sprache wählen">
+      <a href="../termin/" hreflang="de" lang="de" aria-current="true" title="Deutsch">DE</a>
+      <a href="../en/termin/" hreflang="en" lang="en" title="English">EN</a>
+    </div>
   </nav>
 </header>
 <main id="main">
 
+<div class="termin-flow" data-termin-flow>
 <section class="page-hero">
   <div class="container">
     <h1>Termin vereinbaren</h1>
     <p>Egal, ob Du lieber online, telefonisch oder persönlich beraten werden möchtest – wir passen uns Deinen Präferenzen an. Vereinbare Deinen Termin und erhalte individuelle Lösungen, die zu Dir passen.</p>
-    <p><strong style="color:#fff">Termin vereinbaren mit:</strong></p>
-    <div class="termin-choose">
-      <a href="#max">Max</a><span class="or">oder</span><a href="#marco">Marco</a>
+    <div class="termin-lang">
+      <p><strong style="color:#fff">In welcher Sprache möchtest Du Deinen Termin wahrnehmen?</strong></p>
+      <div class="termin-choose" role="group" aria-label="Sprache des Termins">
+        <button type="button" data-termin-lang="de" aria-pressed="false">Deutsch</button><span class="or">oder</span><button type="button" data-termin-lang="en" aria-pressed="false">English</button>
+      </div>
+    </div>
+    <div class="termin-step2">
+      <p><strong style="color:#fff">Termin vereinbaren mit:</strong></p>
+      <div class="termin-choose">
+        <a href="#max" class="only-de">Max</a><span class="or only-de">oder</span><a href="#marco">Marco</a>
+      </div>
+      <p class="termin-en-note only-en">Beratungen auf Englisch führt Marco Musil für Dich durch.</p>
     </div>
   </div>
 </section>
 <section class="section termin-section">
   <img class="bg-logo" src="../assets/img/hero-bg.svg" alt="" aria-hidden="true">
   <div class="container makler-grid">
-    <article class="makler-card reveal" id="max">
+    <article class="makler-card reveal only-de" id="max">
       <img src="../assets/img/makler-max-500.webp" srcset="../assets/img/makler-max-500.webp 500w, ../assets/img/makler-max-800.webp 800w" sizes="(min-width: 900px) 357px, 86vw" width="357" height="446" alt="Maximilian Schneider, Versicherungsfachmann (IHK)">
       <div class="makler-card-info">
         <h2>Max Schneider</h2>
@@ -122,13 +139,14 @@
         <div><a href="https://calendly.com/sum-schneider/beratung" target="_blank" rel="noopener" class="btn"><span class="btn-icon"><img src="../assets/img/arrow.svg" alt="" width="16" height="16"></span>Termin online buchen</a></div>
       </div>
     </article>
-    <img class="makler-logo" src="../assets/img/logo-full.svg" alt="" width="300" height="120" loading="lazy">
+    <img class="makler-logo only-de" src="../assets/img/logo-full.svg" alt="" width="300" height="120" loading="lazy">
     <article class="makler-card reveal reveal-d1" id="marco">
       <img src="../assets/img/makler-marco-500.webp" srcset="../assets/img/makler-marco-500.webp 500w, ../assets/img/makler-marco-800.webp 800w" sizes="(min-width: 900px) 357px, 86vw" width="357" height="446" loading="lazy" alt="Marco Musil, Diplom Betriebswirt (FH)">
       <div class="makler-card-info">
         <h2>Marco Musil</h2>
         <p class="role">Diplom Betriebswirt (FH)</p>
         <p class="sub">Freier Makler nach §93 HGB</p>
+        <p class="sub langs">Beratung auf Deutsch &amp; Englisch</p>
         <a class="tel" href="tel:+491792936633">0179 29 36 63 3</a>
         <a class="mail" href="mailto:musil@sum-makler.de">musil@sum-makler.de</a>
         <div><a href="https://calendly.com/musil/60min" target="_blank" rel="noopener" class="btn"><span class="btn-icon"><img src="../assets/img/arrow.svg" alt="" width="16" height="16"></span>Termin online buchen</a></div>
@@ -136,6 +154,7 @@
     </article>
   </div>
 </section>
+</div>
 </main>
 <footer class="site-footer">
   <div class="container">
@@ -165,10 +184,7 @@
       </nav>
       <nav class="footer-links" aria-label="Sparten">
         <h3><a href="../sparten/">Sparten</a></h3>
-        <a href="../sparten/#kfz">Sach &amp; KFZ</a>
-        <a href="../sparten/#haus">Wohnung &amp; Haus</a>
-        <a href="../sparten/#pflege">Pflege &amp; Krankheit</a>
-        <a href="../sparten/#rente">Rente &amp; Vorsorge</a>
+        <a href="../sparten/#kfz">Sach &amp; KFZ</a><a href="../sparten/#haus">Wohnung &amp; Haus</a><a href="../sparten/#pflege">Pflege &amp; Krankheit</a><a href="../sparten/#rente">Rente &amp; Vorsorge</a>
       </nav>
     </div>
     <div class="footer-bottom">
@@ -181,9 +197,12 @@
   </div>
 </footer>
 <script src="../assets/js/main.js" defer></script>
-<a href="https://wa.me/message/N5OLZTL577ELP1" rel="noopener" class="wa-fab" aria-label="Per WhatsApp schreiben">
-  <span class="wa-fab-icon"><img src="../assets/img/icon-whatsapp.svg" alt="" width="28" height="28"></span>
-  <span class="wa-fab-text"><strong>WhatsApp</strong><span>Jetzt direkt schreiben</span></span>
-</a>
+<div class="fab-dock">
+  <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" data-label-open="Menü" data-label-close="Schließen"><span class="nav-toggle-icon" aria-hidden="true"></span><span class="nav-toggle-label">Menü</span></button>
+  <a href="https://wa.me/message/N5OLZTL577ELP1" rel="noopener" class="wa-fab" aria-label="Per WhatsApp schreiben">
+    <span class="wa-fab-icon"><img src="../assets/img/icon-whatsapp.svg" alt="" width="28" height="28"></span>
+    <span class="wa-fab-text"><strong>WhatsApp</strong><span>Jetzt direkt schreiben</span></span>
+  </a>
+</div>
 </body>
 </html>

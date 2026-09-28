@@ -2,6 +2,11 @@
 (function () {
   'use strict';
 
+  var EN = document.documentElement.lang === 'en';
+  /* Basis-URL der Assets aus dem eigenen Script-Pfad (funktioniert auch unter /en/) */
+  var selfScript = document.querySelector('script[src*="main.js"]');
+  var ASSETS = selfScript ? selfScript.src.replace(/js\/main\.js.*$/, '') : 'assets/';
+
   /* Preloader (nur Startseite): blauer Punkt, dann ausblenden */
   var pre = document.getElementById('preloader');
   if (pre) {
@@ -16,11 +21,11 @@
       var anim = document.getElementById('preloaderAnim');
       if (anim) {
         var lot = document.createElement('script');
-        lot.src = 'assets/js/lottie-light.min.js';
+        lot.src = ASSETS + 'js/lottie-light.min.js';
         lot.onload = function () {
           if (window.lottie && document.body.contains(anim)) {
             anim.innerHTML = '';
-            window.lottie.loadAnimation({ container: anim, renderer: 'svg', loop: true, autoplay: true, path: 'assets/img/preloader.json' });
+            window.lottie.loadAnimation({ container: anim, renderer: 'svg', loop: true, autoplay: true, path: ASSETS + 'img/preloader.json' });
           }
         };
         document.head.appendChild(lot);
@@ -63,14 +68,23 @@
     pxUpdate();
   }
 
-  /* Mobile nav toggle */
-  var header = document.querySelector('.site-header');
+  /* Mobile nav toggle (schwebender Menü-Button unten) */
   var toggle = document.querySelector('.nav-toggle');
+  var toggleLabel = toggle && toggle.querySelector('.nav-toggle-label');
+  var setNav = function (open) {
+    document.body.classList.toggle('nav-open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (toggle) {
+      toggle.setAttribute('aria-expanded', open);
+      if (toggleLabel) toggleLabel.textContent = toggle.dataset[open ? 'labelClose' : 'labelOpen'];
+    }
+  };
   if (toggle) {
     toggle.addEventListener('click', function () {
-      var open = header.classList.toggle('nav-open');
-      toggle.setAttribute('aria-expanded', open);
-      document.body.style.overflow = open ? 'hidden' : '';
+      setNav(!document.body.classList.contains('nav-open'));
+    });
+    document.querySelectorAll('.nav-menu a').forEach(function (a) {
+      a.addEventListener('click', function () { setNav(false); });
     });
   }
 
@@ -94,10 +108,7 @@
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
       document.querySelectorAll('.mega.open').forEach(function (m) { m.classList.remove('open'); });
-      if (header && header.classList.contains('nav-open')) {
-        header.classList.remove('nav-open');
-        document.body.style.overflow = '';
-      }
+      if (document.body.classList.contains('nav-open')) setNav(false);
     }
   });
 
@@ -111,7 +122,7 @@
     slides.forEach(function (_, idx) {
       var d = document.createElement('button');
       d.className = 'slider-dot' + (idx === 0 ? ' active' : '');
-      d.setAttribute('aria-label', 'Bewertung ' + (idx + 1) + ' anzeigen');
+      d.setAttribute('aria-label', (EN ? 'Show review ' : 'Bewertung ') + (idx + 1) + (EN ? '' : ' anzeigen'));
       d.addEventListener('click', function () { go(idx); restart(); });
       dotsWrap.appendChild(d);
     });
@@ -153,6 +164,26 @@
     });
   } else {
     document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('revealed'); });
+  }
+
+  /* Termin: zuerst Sprache wählen (Deutsch → Max oder Marco, Englisch → nur Marco) */
+  var flow = document.querySelector('[data-termin-flow]');
+  if (flow) {
+    flow.classList.add('is-js');
+    var langBtns = flow.querySelectorAll('[data-termin-lang]');
+    var chooseLang = function (lang, scroll) {
+      flow.setAttribute('data-choice', lang);
+      langBtns.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.terminLang === lang); });
+      flow.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('revealed'); });
+      var step2 = flow.querySelector('.termin-step2');
+      if (scroll && step2) step2.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+    langBtns.forEach(function (b) {
+      b.addEventListener('click', function () { chooseLang(b.dataset.terminLang, true); });
+    });
+    /* Direktlink auf einen Makler (#max / #marco) überspringt die Auswahl */
+    if (location.hash === '#max') chooseLang('de', false);
+    else if (location.hash === '#marco') chooseLang(EN ? 'en' : 'de', false);
   }
 
   /* Blog filter */
