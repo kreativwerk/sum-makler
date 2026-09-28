@@ -639,12 +639,16 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .fab-dock > * { pointer-events: auto; }
 @media (min-width: 992px) { .fab-dock { left: auto; right: 28px; bottom: 28px; padding: 0; } }
 .nav-toggle {
-  display: flex; align-items: center; gap: 12px; height: 56px; padding: 0 20px 0 18px;
-  border-radius: 50px; background: var(--ink); color: #fff; font: inherit; font-weight: 600; font-size: .95rem;
-  box-shadow: 0 8px 24px rgba(16, 24, 40, .35), 0 2px 6px rgba(0, 0, 0, .18); cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 12px; height: 56px;
+  min-width: min(200px, calc(100vw - 176px)); padding: 0 28px;
+  border-radius: 999px; color: #fff; font: inherit; font-weight: 600; font-size: 1rem; letter-spacing: .3px;
+  background: rgba(16, 24, 40, .45);
+  -webkit-backdrop-filter: blur(14px) saturate(160%); backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, .28);
+  box-shadow: 0 8px 24px rgba(16, 24, 40, .25); cursor: pointer;
   transition: transform .25s ease, background .25s ease;
 }
-.nav-toggle:hover { transform: translateY(-2px); background: #1d2939; }
+.nav-toggle:hover { transform: translateY(-2px); background: rgba(16, 24, 40, .6); }
 .nav-toggle:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
 .nav-toggle-icon, .nav-toggle-icon::before, .nav-toggle-icon::after {
   display: block; width: 20px; height: 2px; background: #fff; border-radius: 2px; transition: transform .3s, background .2s;
@@ -672,7 +676,10 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .wa-fab-text strong { font-size: 1rem; font-weight: 700; }
 .wa-fab-text span { font-size: .78rem; opacity: .92; }
 @media (max-width: 991.98px) {
-  .wa-fab { padding: 6px; gap: 10px; }
+  /* Mobil: Menü exakt mittig, WhatsApp nur als Icon rechtsbündig */
+  .wa-fab { position: absolute; right: 16px; top: 50%; margin-top: -28px; padding: 6px; gap: 0; }
+  .wa-fab:hover, .wa-fab:focus-visible { transform: translateY(-3px) scale(1.05); }
+  .wa-fab-text { display: none; }
   .wa-fab-icon { width: 44px; height: 44px; }
   .wa-fab-text strong { font-size: .95rem; }
   .wa-fab-text span { font-size: .72rem; }
@@ -693,7 +700,7 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
   from { opacity: 0; transform: translateY(24px) scale(.9); }
   to { opacity: 1; transform: none; }
 }
-@media (max-width: 379.98px) { .wa-fab-text span { display: none; } .nav-toggle { padding: 0 16px; } }
+@media (max-width: 379.98px) { .nav-toggle { padding: 0 18px; } }
 @media print { .fab-dock { display: none; } }
 
 .kontakt-tile--wa { background: var(--wa-green); border-color: var(--wa-green); }
