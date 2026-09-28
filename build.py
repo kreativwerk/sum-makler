@@ -518,10 +518,10 @@ def build_index():
       <h1>{T('Wir sind Deine <strong>unabhängigen</strong> Versicherungsmakler aus der Metropolregion Nürnberg', 'We are your <strong>independent</strong> insurance brokers in the Nuremberg metropolitan region')}</h1>
       <p class="hero-sub">{T('Buche jetzt einen Termin für eine <strong>persönliche &amp; kostenfreie</strong> Beratung!', 'Book an appointment now for <strong>personal &amp; free</strong> advice!')}</p>
       {cta_buttons()}
-      <div class="rating">
-        <strong>{T('5,0', '5.0')}</strong>
+      <div class="rating" data-rating-celebrate>
+        <strong data-count-to="5" data-decimals="1">{T('5,0', '5.0')}</strong>
         <img class="stars" src="/assets/img/sterne-5.svg" alt="{T('5 von 5 Sternen bei Google', '5 out of 5 stars on Google')}" width="110" height="20">
-        <span class="rating-count">{T('185 Google Rezensionen', '185 Google reviews')}</span>
+        <span class="rating-count"><span data-count-to="185">185</span> {T('Google Rezensionen', 'Google reviews')}</span>
         <img class="badge" src="/assets/img/google-badge-160.webp" srcset="/assets/img/google-badge-160.webp 1x, /assets/img/google-badge-320.webp 2x" alt="Google" width="66" height="44" loading="lazy">
       </div>
     </div>
