@@ -239,11 +239,10 @@ button { font: inherit; background: none; border: 0; cursor: pointer; color: inh
 .rating .badge { height: 24px; width: auto; }
 .rating-count { font-weight: 400; font-size: 1.05rem; white-space: nowrap; }
 .rating [data-count-to] { font-variant-numeric: tabular-nums; }
-/* Sterne füllen sich von links nach rechts (Klasse wird per JS gesetzt) */
-.rating.is-counting .stars { clip-path: inset(0 100% 0 0); }
-.rating.is-counted .stars { clip-path: inset(0 0 0 0); transition: clip-path 1.4s cubic-bezier(.3, .7, .2, 1); }
-.rating.is-done { animation: rating-pop .5s ease; }
-@keyframes rating-pop { 40% { transform: scale(1.06); } }
+/* Nach dem Hochzählen wird die Zahl fett und macht einen kleinen Sprung */
+.rating-num { display: inline-block; transition: font-weight .35s ease, color .35s ease; }
+.rating.is-done .rating-num { font-weight: 800; color: var(--ink); animation: rating-pop .5s ease; }
+@keyframes rating-pop { 45% { transform: scale(1.35); } }
 .confetti-canvas { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1050; }
 @media (max-width: 600px) {
   .rating { gap: 8px; }

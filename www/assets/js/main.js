@@ -191,7 +191,7 @@
     else if (location.hash === '#marco') chooseLang(EN ? 'en' : 'de', false);
   }
 
-  /* Google-Bewertung: Zahlen zählen hoch, Sterne füllen sich, dann Konfetti */
+  /* Google-Bewertung: Anzahl zählt hoch, wird fett, dann Konfetti */
   var rating = document.querySelector('[data-rating-celebrate]');
   if (rating && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     var counters = rating.querySelectorAll('[data-count-to]');
@@ -201,7 +201,6 @@
       el.textContent = EN ? txt : txt.replace('.', ',');
     };
     counters.forEach(function (el) { fmt(el, 0); });
-    rating.classList.add('is-counting');
 
     var confetti = function (origin) {
       var cv = document.createElement('canvas');
@@ -246,15 +245,17 @@
 
     var run = function () {
       var dur = 1600, t0 = performance.now();
-      rating.classList.add('is-counted');
       (function tick(now) {
         var p = Math.min(1, (now - t0) / dur);
         var eased = 1 - Math.pow(1 - p, 3);
         counters.forEach(function (el) { fmt(el, parseFloat(el.dataset.countTo) * eased); });
         if (p < 1) { requestAnimationFrame(tick); return; }
         rating.classList.add('is-done');
-        var r = rating.getBoundingClientRect();
-        confetti({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
+        setTimeout(function () {
+          var num = rating.querySelector('.rating-num') || rating;
+          var r = num.getBoundingClientRect();
+          confetti({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
+        }, 350);
       })(t0);
     };
 
