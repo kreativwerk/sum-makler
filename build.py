@@ -233,7 +233,7 @@ ORG_LD = """{
 }"""
 
 def page(*, path, title, desc, body, active="", og_image="/assets/img/og-home.jpg",
-         extra_ld=None, og_type="website", noindex=False):
+         extra_ld=None, og_type="website", noindex=False, extra_head="", extra_js="", body_class=""):
     """Write a full HTML page. path is relative to www/, e.g. 'termin/index.html'
     (German); in English mode it is written to www/en/<path> automatically."""
     base_path = path
@@ -284,13 +284,14 @@ def page(*, path, title, desc, body, active="", og_image="/assets/img/og-home.jp
 <link rel="preload" href="/assets/fonts/montserrat-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/style.css">
 {ld_tags}
+{extra_head}
 </head>
-<body>
+<body{f' class="{body_class}"' if body_class else ''}>
 {header(active, url_de, url_en)}
 <main id="main">
 {body}
 </main>
-{footer()}
+{footer()}{extra_js}
 {fab_dock()}
 </body>
 </html>"""
@@ -1188,6 +1189,192 @@ Telefon: +49 (0)911 37 75 84 30<br>Fax: +49 (0)911 37 75 84 32</p>
                 "Privacy policy of Schneider & Musil Versicherungsmakler GbR – information on the collection and processing of personal data."),
          body=T(body, DATENSCHUTZ_EN))
 
+# ================================================================ AMAZON DSP (nur per Link erreichbar, noindex)
+WA_URL = "https://wa.me/message/N5OLZTL577ELP1"
+
+def build_dsp():
+    van = """<g class="dsp-van-shape">
+      <rect x="-34" y="-30" width="50" height="30" rx="5" fill="#fff"/>
+      <path d="M16 -24h12l10 12v12H16z" fill="#dbe6ff"/>
+      <path d="M20 -20h7l7 8H20z" fill="#245eed" opacity=".55"/>
+      <rect x="-28" y="-22" width="30" height="5" rx="2.5" fill="#245eed"/>
+      <circle cx="-20" cy="2" r="7" fill="#0b1220" stroke="#fff" stroke-width="3"/>
+      <circle cx="26" cy="2" r="7" fill="#0b1220" stroke="#fff" stroke-width="3"/>
+    </g>"""
+    steps = [
+        (T("Fahrzeug wählen", "Choose vehicle"), "FÜ-SM 104 · Sprinter", T("bereits hinterlegt", "already on file")),
+        (T("Fahrer wählen", "Choose driver"), "Daniel K.", T("aus CoDriver übernommen", "synced from CoDriver")),
+        (T("Fotos &amp; Ort", "Photos &amp; location"), T("3 Fotos · GPS erkannt", "3 photos · GPS detected"), T("direkt aus der Kamera", "straight from the camera")),
+        (T("Gemeldet ✓", "Reported ✓"), T("Schaden #2024-117", "Claim #2024-117"), T("an den Versicherer übermittelt", "sent to the insurer")),
+    ]
+    step_html = "".join(f"""<div class="ph-step" style="--s:{i}">
+          <span class="ph-step-no">{i + 1}</span>
+          <div><strong>{t}</strong><span>{v}</span><em>{h}</em></div>
+        </div>""" for i, (t, v, h) in enumerate(steps))
+    months = T(["Jan", "Feb", "Mär", "Apr", "Mai", "Jun"], ["Jan", "Feb", "Mar", "Apr", "May", "Jun"])
+    quota = [42, 38, 31, 27, 22, 18]
+    bars = "".join(f'<div class="q-bar" style="--h:{q};--i:{i}"><span class="q-val">{q}%</span><span class="q-mon">{m}</span></div>'
+                   for i, (q, m) in enumerate(zip(quota, months)))
+    body = f"""
+<section class="dsp-hero" data-progress>
+  <div class="dsp-bg-word" aria-hidden="true">DELIVERY · FLEET · DELIVERY · FLEET ·</div>
+  <div class="container dsp-hero-grid">
+    <div class="dsp-hero-copy">
+      <p class="dsp-eyebrow m-in" style="--d:0">{T('Für Amazon DSP Partner', 'For Amazon DSP partners')}</p>
+      <h1 class="m-in" style="--d:1">{T('Flottenversicherung, die so schnell liefert wie <span class="dsp-grad">Du.</span>', 'Fleet insurance that delivers as fast as <span class="dsp-grad">you do.</span>')}</h1>
+      <p class="dsp-lead m-in" style="--d:2">{T('Wir versichern Delivery Service Partner – digital angebunden an Deine Tools, mit starken Flottenversicherern im Rücken und persönlich erreichbar, wenn es drauf ankommt.',
+                                                 'We insure Delivery Service Partners – digitally connected to your tools, backed by strong fleet insurers and personally available when it matters.')}</p>
+      <div class="cta-row m-in" style="--d:3">
+        <a href="/termin/" class="btn">{ARROW_BTN}{T('Erstgespräch vereinbaren', 'Book an intro call')}</a>
+        <a href="{WA_URL}" rel="noopener" class="btn dsp-btn-wa"><span class="btn-icon"><img src="/assets/img/icon-whatsapp.svg" alt="" width="18" height="18"></span>WhatsApp</a>
+      </div>
+      <ul class="dsp-chips m-in" style="--d:4">
+        <li>{T('CoDriver-Anbindung', 'CoDriver integration')}</li><li>{T('Cortex-Upload', 'Cortex upload')}</li><li>{T('Allianz &amp; Co.', 'Allianz &amp; more')}</li><li>{T('Immer erreichbar', 'Always reachable')}</li>
+      </ul>
+    </div>
+    <div class="dsp-hero-visual m-in" style="--d:2" aria-hidden="true">
+      <svg viewBox="0 0 520 420" class="dsp-route">
+        <defs>
+          <linearGradient id="routeG" x1="0" x2="1"><stop offset="0" stop-color="#6ea0ff"/><stop offset="1" stop-color="#25d366"/></linearGradient>
+          <radialGradient id="glowG"><stop offset="0" stop-color="#245eed" stop-opacity=".55"/><stop offset="1" stop-color="#245eed" stop-opacity="0"/></radialGradient>
+        </defs>
+        <circle cx="260" cy="210" r="200" fill="url(#glowG)"/>
+        <path id="dspRoute" class="dsp-route-base" d="M40 340 C 120 340, 110 220, 200 220 S 300 330, 380 260 S 440 90, 490 80"/>
+        <path class="dsp-route-line" d="M40 340 C 120 340, 110 220, 200 220 S 300 330, 380 260 S 440 90, 490 80" stroke="url(#routeG)"/>
+        <g class="dsp-stop" transform="translate(200 220)"><circle r="9"/><circle r="18" class="pulse"/></g>
+        <g class="dsp-stop" transform="translate(380 260)"><circle r="9"/><circle r="18" class="pulse" style="animation-delay:.8s"/></g>
+        <g class="dsp-stop dsp-stop--end" transform="translate(490 80)"><circle r="11"/><circle r="22" class="pulse" style="animation-delay:1.6s"/></g>
+        <g class="dsp-van">
+          {van}
+          <animateMotion dur="9s" repeatCount="indefinite" rotate="auto" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#dspRoute"/></animateMotion>
+        </g>
+        <g transform="translate(56 70)"><g class="dsp-badge">
+          <rect width="190" height="58" rx="14"/>
+          <circle cx="29" cy="29" r="15" fill="#25d366"/><path d="M22 29l5 5 9-10" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <text x="54" y="25" class="b1">{T('Schaden gemeldet', 'Claim reported')}</text><text x="54" y="44" class="b2">{T('in wenigen Klicks', 'in a few taps')}</text>
+        </g></g>
+      </svg>
+    </div>
+  </div>
+  <div class="dsp-scroll-hint" aria-hidden="true"><span></span></div>
+</section>
+
+<section class="dsp-section dsp-connect">
+  <div class="container">
+    <div class="dsp-head">
+      <p class="dsp-eyebrow m-up">{T('Direkt angebunden', 'Directly connected')}</p>
+      <h2 class="m-up" style="--d:1">{T('Deine Daten fließen. Du musst nichts doppelt pflegen.', 'Your data flows. Nothing to maintain twice.')}</h2>
+    </div>
+    <div class="dsp-flow">
+      <div class="dsp-node m-left" style="--d:1">
+        <span class="dsp-node-ic">↑</span>
+        <h3>Amazon Logistics Portal <small>Cortex</small></h3>
+        <p>{T('Einfacher Upload: Export aus Cortex hochladen – Fahrzeuge und Touren sind sofort im System.', 'Simple upload: drop in your Cortex export – vehicles and routes are in the system right away.')}</p>
+      </div>
+      <svg class="dsp-flow-svg" viewBox="0 0 400 260" aria-hidden="true">
+        <path id="fl1" class="fl-path" d="M0 60 C 140 60, 140 130, 200 130"/>
+        <path id="fl2" class="fl-path" d="M0 200 C 140 200, 140 130, 200 130"/>
+        <path id="fl3" class="fl-path" d="M200 130 L 400 130"/>
+        <circle r="5" class="fl-dot"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#fl1"/></animateMotion></circle>
+        <circle r="5" class="fl-dot"><animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite"><mpath href="#fl2"/></animateMotion></circle>
+        <circle r="5" class="fl-dot fl-dot--g"><animateMotion dur="1.8s" begin=".6s" repeatCount="indefinite"><mpath href="#fl3"/></animateMotion></circle>
+        <g transform="translate(200 130)" class="fl-hub"><circle r="46"/><circle r="64" class="pulse"/></g>
+        <image href="/assets/img/fleetsurance-logo.svg" x="170" y="118" width="60" height="24" preserveAspectRatio="xMidYMid meet"/>
+      </svg>
+      <div class="dsp-node m-right" style="--d:2">
+        <span class="dsp-node-ic">⇄</span>
+        <h3>CoDriver <small>DSP App</small></h3>
+        <p>{T('Direkte Anbindung: Fahrzeug- und Fahrerdaten kommen direkt aus Deiner CoDriver DSP App.', 'Direct integration: vehicle and driver data comes straight from your CoDriver DSP app.')}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dsp-section dsp-partners">
+  <div class="container dsp-split">
+    <div>
+      <p class="dsp-eyebrow m-up">{T('Starke Partner', 'Strong partners')}</p>
+      <h2 class="m-up" style="--d:1">{T('Enge Zusammenarbeit mit starken Flottenversicherern wie der <span class="dsp-grad">Allianz</span>.', 'Close cooperation with strong fleet insurers such as <span class="dsp-grad">Allianz</span>.')}</h2>
+      <p class="dsp-lead m-up" style="--d:2">{T('Als unabhängige Makler vergleichen und verhandeln wir für Deine Flotte – und bleiben Dein Ansprechpartner, wenn es kracht.', 'As independent brokers we compare and negotiate for your fleet – and remain your contact when something happens.')}</p>
+    </div>
+    <ul class="dsp-cards">
+      <li class="m-up" style="--d:1"><strong>{T('Flottentarife für Transporter', 'Fleet rates for vans')}</strong><span>{T('Kfz-Flottenversicherung passend zu Größe und Einsatz Deiner Flotte.', 'Motor fleet insurance tailored to the size and use of your fleet.')}</span></li>
+      <li class="m-up" style="--d:2"><strong>{T('Kurze Wege im Schadenfall', 'Short paths when claims happen')}</strong><span>{T('Wir übergeben Deine Meldung vollständig an den Versicherer und halten nach.', 'We hand your claim to the insurer in full and follow up for you.')}</span></li>
+      <li class="m-up" style="--d:3"><strong>{T('Unabhängig vergleichen', 'Independent comparison')}</strong><span>{T('Wir sind Makler, kein Vertreter – wir arbeiten in Deinem Auftrag.', 'We are brokers, not agents – we work on your behalf.')}</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="dsp-section dsp-app">
+  <div class="container">
+    <div class="dsp-head">
+      <img class="dsp-app-logo m-up" src="/assets/img/fleetsurance-logo.svg" alt="FLEETSURANCE" width="320" height="64">
+      <h2 class="m-up" style="--d:1">{T('Deine Flotte. Eine App.', 'Your fleet. One app.')}</h2>
+    </div>
+    <div class="dsp-app-grid">
+      <div class="dsp-phone m-left" aria-hidden="true">
+        <div class="ph-notch"></div>
+        <div class="ph-screen">
+          <div class="ph-top"><img src="/assets/img/fleetsurance-logo.svg" alt="" width="130" height="26"></div>
+          <p class="ph-title">{T('Neue Schadensmeldung', 'New claim')}</p>
+          {step_html}
+          <div class="ph-progress"><span></span></div>
+        </div>
+      </div>
+      <div class="dsp-app-copy">
+        <div class="dsp-feature m-up" style="--d:1">
+          <h3>{T('Schaden in wenigen Klicks melden', 'Report a claim in a few taps')}</h3>
+          <p>{T('Schnell und einfach, weil Fahrzeuge und Fahrer bereits hinterlegt sind. Foto machen, auswählen, absenden – fertig.', 'Quick and easy, because vehicles and drivers are already on file. Take a photo, select, send – done.')}</p>
+        </div>
+        <div class="dsp-feature dsp-quota m-up" style="--d:2">
+          <h3>{T('Schadensquote monatlich digital ablesbar', 'Monthly loss ratio at a glance')}</h3>
+          <p>{T('Behalte Deine Schadensquote jeden Monat im Blick – die Grundlage für bessere Konditionen.', 'Keep an eye on your loss ratio every month – the basis for better terms.')}</p>
+          <div class="q-chart" data-q>{bars}</div>
+          <p class="q-note">{T('Beispielansicht', 'Sample view')}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dsp-section dsp-contact">
+  <div class="container dsp-split">
+    <div>
+      <p class="dsp-eyebrow m-up">{T('Persönlich', 'Personal')}</p>
+      <h2 class="m-up" style="--d:1">{T('Immer erreichbar. Persönlich über WhatsApp oder Telefon.', 'Always reachable. Personally via WhatsApp or phone.')}</h2>
+      <p class="dsp-lead m-up" style="--d:2">{T('Keine Hotline, keine Warteschleife: Du hast direkte Ansprechpartner, die Deine Flotte kennen.', 'No hotline, no queue: you have direct contacts who know your fleet.')}</p>
+      <div class="cta-row m-up" style="--d:3">
+        <a href="{WA_URL}" rel="noopener" class="btn dsp-btn-wa"><span class="btn-icon"><img src="/assets/img/icon-whatsapp.svg" alt="" width="18" height="18"></span>{T('Per WhatsApp schreiben', 'Message on WhatsApp')}</a>
+        <a href="tel:+4991137758430" class="btn btn--ghost">{PHONE_BTN}+49 911 37758430</a>
+      </div>
+    </div>
+    <div class="dsp-team">
+      <figure class="m-scale" style="--d:1"><img src="/assets/img/team-max-400.webp" width="200" height="200" loading="lazy" alt="Maximilian Schneider"><figcaption>Max Schneider</figcaption></figure>
+      <figure class="m-scale" style="--d:2"><img src="/assets/img/team-marco-400.webp" width="200" height="200" loading="lazy" alt="Marco Musil"><figcaption>Marco Musil</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="dsp-section dsp-final">
+  <div class="container">
+    <h2 class="m-up">{T('Bereit, Deine Flotte abzusichern?', 'Ready to insure your fleet?')}</h2>
+    <p class="dsp-lead m-up" style="--d:1">{T('Kostenfreies Erstgespräch – wir schauen uns Deine aktuelle Flottenversicherung an.', 'Free intro call – we will review your current fleet insurance.')}</p>
+    <div class="cta-row m-up" style="--d:2">
+      <a href="/termin/" class="btn">{ARROW_BTN}{T('Erstgespräch vereinbaren', 'Book an intro call')}</a>
+      <a href="{WA_URL}" rel="noopener" class="btn dsp-btn-wa"><span class="btn-icon"><img src="/assets/img/icon-whatsapp.svg" alt="" width="18" height="18"></span>WhatsApp</a>
+    </div>
+  </div>
+</section>"""
+    page(
+        path="amazon-dsp/index.html",
+        title=T("Flottenversicherung für Amazon DSP Partner | Schneider & Musil", "Fleet insurance for Amazon DSP partners | Schneider & Musil"),
+        desc=T("Flottenversicherung für Amazon Delivery Service Partner: Anbindung an CoDriver, Upload aus Cortex, starke Versicherer wie Allianz und die FLEETSURANCE App.",
+               "Fleet insurance for Amazon Delivery Service Partners: CoDriver integration, Cortex upload, strong insurers such as Allianz and the FLEETSURANCE app."),
+        body=body, noindex=True, body_class="dsp-page",
+        extra_head='<link rel="stylesheet" href="/assets/css/dsp.css">',
+        extra_js='\n<script src="/assets/js/dsp.js" defer></script>',
+    )
+
 def build_anfrage():
     body = f"""
 <section class="error-hero">
@@ -1248,6 +1435,7 @@ def build_lang(lang):
     build_impressum(); urls.append(U("/impressum/"))
     build_datenschutz(); urls.append(U("/datenschutzerklarung/"))
     build_anfrage()
+    build_dsp()  # bewusst nicht in urls/Sitemap und nirgends verlinkt
     build_404()
     return urls
 
