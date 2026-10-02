@@ -25,13 +25,55 @@
 .dsp-hero h1 { font-size: clamp(2.1rem, 6.2vw, 4.6rem); line-height: 1.05; font-weight: 700; margin: 0 auto 22px; max-width: 980px; hyphens: manual; }
 .dsp-hero .dsp-lead { margin: 0 auto; }
 .dsp-hero .cta-row { justify-content: center; margin: 34px 0 0; }
-.dsp-hero-visual { margin-top: 56px; }
-.dsp-route { width: 100%; height: auto; overflow: visible; }
-.dsp-route-base { fill: none; stroke: #f0f1f4; stroke-width: 18; stroke-linecap: round; }
-.dsp-route-line { fill: none; stroke: var(--blue); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 1400; stroke-dashoffset: 1400; animation: dsp-draw 2.6s cubic-bezier(.25, .1, .25, 1) .5s forwards; }
-@keyframes dsp-draw { to { stroke-dashoffset: 0; } }
-.dsp-stop circle { fill: #fff; stroke: var(--blue); stroke-width: 3; }
-.dsp-stop--end circle { fill: var(--blue); }
+.dsp-hero-visual { margin: 64px auto 0; max-width: 940px; }
+
+/* Hero-Dashboard (FLEETSURANCE): baut sich ruhig nacheinander auf */
+.dash { position: relative; text-align: left; background: #fff; border-radius: 28px; border: 1px solid #ececf0;
+  box-shadow: 0 30px 80px rgba(16, 24, 40, .12), 0 2px 8px rgba(16, 24, 40, .04); padding: 18px 22px 26px; }
+.dash-bar { display: flex; gap: 6px; margin-bottom: 14px; }
+.dash-bar span { width: 10px; height: 10px; border-radius: 50%; background: #e5e5ea; }
+.dash-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-bottom: 16px; border-bottom: 1px solid #f0f0f3; }
+.dash-head .fs-brand { font-size: .82rem; letter-spacing: 2px; gap: 8px; }
+.dash-head .fs-brand img { width: 26px; height: 26px; }
+.dash-sub { font-size: .82rem; color: #6e6e73; }
+.dash-body { display: grid; gap: 18px; padding-top: 18px; }
+@media (min-width: 768px) { .dash-body { grid-template-columns: 1.6fr 1fr; } }
+.dash-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.dash-row { display: grid; grid-template-columns: 34px auto 1fr auto; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: #f5f5f7; }
+.dash-van { width: 34px; height: 19px; color: #1d1d1f; }
+.dash-plate { font-weight: 700; font-size: .88rem; color: #1d1d1f; white-space: nowrap; }
+.dash-meta { font-size: .8rem; color: #6e6e73; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dash-pill { font-size: .72rem; font-weight: 600; color: var(--blue); background: #eef3fe; padding: 4px 10px; border-radius: 99px; white-space: nowrap; }
+.dash-side { display: grid; gap: 8px; align-content: start; }
+.dash-tile { padding: 16px 18px; border-radius: 16px; background: #f5f5f7; }
+.dash-k { display: block; font-size: .75rem; color: #6e6e73; margin-bottom: 2px; }
+.dash-tile strong { font-size: 1.6rem; font-weight: 700; color: #1d1d1f; letter-spacing: -.02em; }
+.dash-evb { font-family: ui-monospace, Menlo, monospace; font-size: 1.15rem !important; letter-spacing: 3px !important; }
+.dash-spark { display: flex; align-items: flex-end; gap: 5px; height: 44px; margin-top: 8px; }
+.dash-spark i { flex: 1; height: calc(var(--h) * 2.2%); border-radius: 3px; background: #d6e1fc; transform-origin: bottom; }
+.dash-spark i:last-child { background: var(--blue); }
+.dash-toast { position: absolute; right: 18px; bottom: -22px; display: flex; align-items: center; gap: 12px; padding: 12px 16px 12px 12px;
+  background: #fff; border-radius: 16px; box-shadow: 0 16px 40px rgba(16, 24, 40, .16); border: 1px solid #ececf0; }
+.dash-check { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--blue); color: #fff; font-weight: 700; font-size: .85rem; }
+.dash-toast strong { display: block; font-size: .85rem; color: #1d1d1f; line-height: 1.2; }
+.dash-toast div span { font-size: .75rem; color: #6e6e73; }
+@media (max-width: 767.98px) {
+  .dash { padding: 14px 14px 22px; border-radius: 22px; }
+  .dash-row { grid-template-columns: 30px auto 1fr; }
+  .dash-row .dash-meta { display: none; }
+  .dash-pill { justify-self: end; }
+  .dash-toast { left: 14px; right: 14px; bottom: -26px; }
+}
+/* Aufbau-Sequenz, sobald das Dashboard sichtbar ist */
+.js-motion .dash-row, .js-motion .dash-tile, .js-motion .dash-toast { opacity: 0; }
+.js-motion .is-in .dash-row { animation: dash-in .7s cubic-bezier(.25, .1, .25, 1) both; animation-delay: calc(.5s + var(--r) * .12s); }
+.js-motion .is-in .dash-tile { animation: dash-in .7s cubic-bezier(.25, .1, .25, 1) both; animation-delay: 1s; }
+.js-motion .is-in .dash-tile + .dash-tile { animation-delay: 1.12s; }
+.js-motion .is-in .dash-spark i { animation: dash-grow .9s cubic-bezier(.25, .1, .25, 1) both; animation-delay: calc(1.2s + var(--i) * .06s); }
+.js-motion .is-in .dash-toast { animation: dash-toast .8s cubic-bezier(.2, .9, .3, 1.2) both; animation-delay: 2s; }
+@keyframes dash-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes dash-grow { from { transform: scaleY(0); } to { transform: none; } }
+@keyframes dash-toast { from { opacity: 0; transform: translateY(16px) scale(.96); } to { opacity: 1; transform: none; } }
 
 /* ---- Kennzahlen ---- */
 .dsp-stats { padding-block: 24px 72px; }
@@ -143,7 +185,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .dsp-page *, .dsp-page *::before, .dsp-page *::after { animation: none !important; transition: none !important; }
-  .dsp-route-line { stroke-dashoffset: 0; }
   .ph-step { opacity: 1; }
 }
-@media (max-width: 767.98px) { .dsp-route { width: 190%; margin-left: -45%; } .dsp-hero-visual { margin-top: 36px; } }
+@media (max-width: 767.98px) { .dsp-hero-visual { margin-top: 44px; } }

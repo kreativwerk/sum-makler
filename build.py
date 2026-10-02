@@ -1193,14 +1193,18 @@ Telefon: +49 (0)911 37 75 84 30<br>Fax: +49 (0)911 37 75 84 32</p>
 WA_URL = "https://wa.me/message/N5OLZTL577ELP1"
 
 def build_dsp():
-    # Transporter (Seitenansicht, Sprinter-Silhouette) – kein Lkw
-    van = """<g class="dsp-van-shape">
-      <path d="M-48 -36 H14 Q20 -36 23 -31 L34 -16 Q37 -12 42 -11 L46 -10 Q50 -9 50 -4 V2 H-48 Z" fill="#fff" stroke="#101828" stroke-width="2.5" stroke-linejoin="round"/>
-      <path d="M17 -31 L28 -16 H12 V-31 Z" fill="#245eed"/>
-      <rect x="-42" y="-24" width="46" height="5" rx="2.5" fill="#245eed"/>
-      <circle cx="-30" cy="3" r="7.5" fill="#101828"/><circle cx="-30" cy="3" r="2.5" fill="#fff"/>
-      <circle cx="30" cy="3" r="7.5" fill="#101828"/><circle cx="30" cy="3" r="2.5" fill="#fff"/>
-    </g>"""
+    # Transporter-Symbol (Seitenansicht) für die Flottenliste
+    van_ic = ('<svg class="dash-van" viewBox="0 0 40 22" aria-hidden="true"><path d="M2 3.5Q2 2 3.5 2H24q1.6 0 2.5 1.3l5 6.2'
+              'q.8 1 2.1 1.2l2.6.4Q38 11.4 38 13v3.5q0 1-1 1H2.8Q2 17.5 2 16.7Z" fill="currentColor"/>'
+              '<path d="M25 4.5l4.2 5.3H22V4.5Z" fill="#fff" opacity=".9"/>'
+              '<circle cx="10" cy="18" r="3.4" fill="#fff" stroke="currentColor" stroke-width="2"/>'
+              '<circle cx="30" cy="18" r="3.4" fill="#fff" stroke="currentColor" stroke-width="2"/></svg>')
+    fleet = [("FÜ-SM 101", "Sprinter", "Daniel K."), ("FÜ-SM 102", "Sprinter", "Aylin S."),
+             ("FÜ-SM 103", "eSprinter", "Marek W."), ("FÜ-SM 104", "Transit", "Jonas B.")]
+    fleet_rows = "".join(f'<li class="dash-row" style="--r:{i}">{van_ic}<span class="dash-plate">{pl}</span>'
+                         f'<span class="dash-meta">{m} · {d}</span><span class="dash-pill">{T("versichert", "insured")}</span></li>'
+                         for i, (pl, m, d) in enumerate(fleet))
+    spark = "".join(f'<i style="--h:{h};--i:{i}"></i>' for i, h in enumerate([42, 38, 31, 27, 22, 18]))
     steps = [
         (T("Transporter wählen", "Choose van"), "FÜ-SM 104 · Sprinter", T("bereits hinterlegt", "already on file")),
         (T("Fahrer wählen", "Choose driver"), "Daniel K.", T("aus CoDriver übernommen", "synced from CoDriver")),
@@ -1237,16 +1241,28 @@ def build_dsp():
       {wa_btn('WhatsApp')}
     </div>
     <div class="dsp-hero-visual m-up" style="--d:4" aria-hidden="true">
-      <svg viewBox="0 0 1000 220" class="dsp-route">
-        <path id="dspRoute" class="dsp-route-base" d="M20 170 C 180 170, 220 70, 380 80 S 600 180, 760 120 S 900 50, 980 50"/>
-        <path class="dsp-route-line" d="M20 170 C 180 170, 220 70, 380 80 S 600 180, 760 120 S 900 50, 980 50"/>
-        <g class="dsp-stop" transform="translate(380 80)"><circle r="7"/></g>
-        <g class="dsp-stop" transform="translate(760 120)"><circle r="7"/></g>
-        <g class="dsp-stop dsp-stop--end" transform="translate(980 50)"><circle r="9"/></g>
-        <g class="dsp-van">{van}
-          <animateMotion dur="12s" repeatCount="indefinite" rotate="auto"><mpath href="#dspRoute"/></animateMotion>
-        </g>
-      </svg>
+      <div class="dash">
+        <div class="dash-bar"><span></span><span></span><span></span></div>
+        <div class="dash-head">
+          <div class="fs-brand"><img src="/assets/img/fleetsurance-mark.svg" alt="" width="26" height="26"><span>FLEETSURANCE</span></div>
+          <span class="dash-sub">{T('Meine Flotte · 24 Transporter', 'My fleet · 24 vans')}</span>
+        </div>
+        <div class="dash-body">
+          <ul class="dash-list">{fleet_rows}</ul>
+          <div class="dash-side">
+            <div class="dash-tile dash-tile--q">
+              <span class="dash-k">{T('Schadensquote', 'Loss ratio')}</span>
+              <strong>18&nbsp;%</strong>
+              <div class="dash-spark">{spark}</div>
+            </div>
+            <div class="dash-tile">
+              <span class="dash-k">{T('Dauer-eVB', 'Permanent eVB')}</span>
+              <strong class="dash-evb">7XK4P2M</strong>
+            </div>
+          </div>
+        </div>
+        <div class="dash-toast"><span class="dash-check">✓</span><div><strong>{T('Schaden gemeldet', 'Claim reported')}</strong><span>FÜ-SM 104 · {T('an Versicherer übermittelt', 'sent to insurer')}</span></div></div>
+      </div>
     </div>
   </div>
 </section>
