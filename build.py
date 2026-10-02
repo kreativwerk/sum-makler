@@ -1221,7 +1221,7 @@ def build_dsp():
   <div class="container dsp-hero-grid">
     <div class="dsp-hero-copy">
       <p class="dsp-eyebrow m-in" style="--d:0">{T('Für Amazon DSP Partner', 'For Amazon DSP partners')}</p>
-      <h1 class="m-in" style="--d:1">{T('Flottenversicherung, die so schnell liefert wie <span class="dsp-grad">Du.</span>', 'Fleet insurance that delivers as fast as <span class="dsp-grad">you do.</span>')}</h1>
+      <h1 class="m-in" style="--d:1">{T('Flotten&shy;versicherung, die so schnell liefert wie <span class="dsp-grad">Du.</span>', 'Fleet insurance that delivers as fast as <span class="dsp-grad">you do.</span>')}</h1>
       <p class="dsp-lead m-in" style="--d:2">{T('Wir versichern Delivery Service Partner – digital angebunden an Deine Tools, mit starken Flottenversicherern im Rücken und persönlich erreichbar, wenn es drauf ankommt.',
                                                  'We insure Delivery Service Partners – digitally connected to your tools, backed by strong fleet insurers and personally available when it matters.')}</p>
       <div class="cta-row m-in" style="--d:3">
@@ -1229,7 +1229,7 @@ def build_dsp():
         <a href="{WA_URL}" rel="noopener" class="btn dsp-btn-wa"><span class="btn-icon"><img src="/assets/img/icon-whatsapp.svg" alt="" width="18" height="18"></span>WhatsApp</a>
       </div>
       <ul class="dsp-chips m-in" style="--d:4">
-        <li>{T('CoDriver-Anbindung', 'CoDriver integration')}</li><li>{T('Cortex-Upload', 'Cortex upload')}</li><li>{T('Allianz &amp; Co.', 'Allianz &amp; more')}</li><li>{T('Immer erreichbar', 'Always reachable')}</li>
+        <li>{T('CoDriver-Anbindung', 'CoDriver integration')}</li><li>{T('Cortex-Upload', 'Cortex upload')}</li><li>{T('Allianz &amp; Co.', 'Allianz &amp; more')}</li><li>{T('Dauer-eVB', 'Permanent eVB')}</li><li>{T('Immer erreichbar', 'Always reachable')}</li>
       </ul>
     </div>
     <div class="dsp-hero-visual m-in" style="--d:2" aria-hidden="true">
@@ -1279,7 +1279,7 @@ def build_dsp():
         <circle r="5" class="fl-dot"><animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite"><mpath href="#fl2"/></animateMotion></circle>
         <circle r="5" class="fl-dot fl-dot--g"><animateMotion dur="1.8s" begin=".6s" repeatCount="indefinite"><mpath href="#fl3"/></animateMotion></circle>
         <g transform="translate(200 130)" class="fl-hub"><circle r="46"/><circle r="64" class="pulse"/></g>
-        <image href="/assets/img/fleetsurance-logo.svg" x="170" y="118" width="60" height="24" preserveAspectRatio="xMidYMid meet"/>
+        <image href="/assets/img/fleetsurance-mark.svg" x="176" y="106" width="48" height="48" preserveAspectRatio="xMidYMid meet"/>
       </svg>
       <div class="dsp-node m-right" style="--d:2">
         <span class="dsp-node-ic">⇄</span>
@@ -1308,14 +1308,14 @@ def build_dsp():
 <section class="dsp-section dsp-app">
   <div class="container">
     <div class="dsp-head">
-      <img class="dsp-app-logo m-up" src="/assets/img/fleetsurance-logo.svg" alt="FLEETSURANCE" width="320" height="64">
+      <div class="fs-brand fs-brand--lg m-up"><img src="/assets/img/fleetsurance-mark.svg" alt="" width="72" height="70"><span>FLEETSURANCE</span></div>
       <h2 class="m-up" style="--d:1">{T('Deine Flotte. Eine App.', 'Your fleet. One app.')}</h2>
     </div>
     <div class="dsp-app-grid">
       <div class="dsp-phone m-left" aria-hidden="true">
         <div class="ph-notch"></div>
         <div class="ph-screen">
-          <div class="ph-top"><img src="/assets/img/fleetsurance-logo.svg" alt="" width="130" height="26"></div>
+          <div class="ph-top fs-brand"><img src="/assets/img/fleetsurance-mark.svg" alt="" width="24" height="24"><span>FLEETSURANCE</span></div>
           <p class="ph-title">{T('Neue Schadensmeldung', 'New claim')}</p>
           {step_html}
           <div class="ph-progress"><span></span></div>
@@ -1326,7 +1326,24 @@ def build_dsp():
           <h3>{T('Schaden in wenigen Klicks melden', 'Report a claim in a few taps')}</h3>
           <p>{T('Schnell und einfach, weil Fahrzeuge und Fahrer bereits hinterlegt sind. Foto machen, auswählen, absenden – fertig.', 'Quick and easy, because vehicles and drivers are already on file. Take a photo, select, send – done.')}</p>
         </div>
-        <div class="dsp-feature dsp-quota m-up" style="--d:2">
+        <div class="dsp-feature dsp-evb m-up" style="--d:2">
+          <h3>{T('Dauer-eVB immer griffbereit', 'Permanent eVB always at hand')}</h3>
+          <p>{T('Neues Fahrzeug in der Flotte? Deine Dauer-eVB für die Zulassung hast Du jederzeit in der App – per Klick kopiert oder geteilt.', 'New vehicle in the fleet? Your permanent eVB for registration is always in the app – copied or shared with one tap.')}</p>
+          <div class="evb-card" aria-hidden="true">
+            <span class="evb-label">{T('Dauer-eVB', 'Permanent eVB')}</span>
+            <span class="evb-code">7XK4P2M</span>
+            <span class="evb-copy">{T('Kopiert ✓', 'Copied ✓')}</span>
+          </div>
+        </div>
+        <div class="dsp-feature dsp-docs m-up" style="--d:3">
+          <h3>{T('Alle Unterlagen zur Anmeldung in der App', 'All registration documents in the app')}</h3>
+          <p>{T('Zulassungsvollmacht, SEPA-Mandat für die Kfz-Steuer, Gewerbe- und Registernachweise – alles griffbereit und per Klick an die Zulassungsstelle oder Deinen Dienstleister geteilt.', 'Registration power of attorney, SEPA mandate for vehicle tax, business and register documents – all at hand and shared with the registration office or your service provider in one tap.')}</p>
+          <ul class="doc-list" aria-hidden="true">
+            <li style="--i:0">eVB</li><li style="--i:1">{T('Zulassungsvollmacht', 'Power of attorney')}</li><li style="--i:2">{T('SEPA-Mandat Kfz-Steuer', 'SEPA mandate vehicle tax')}</li><li style="--i:3">{T('Handelsregisterauszug', 'Commercial register extract')}</li>
+            <li class="doc-share" style="--i:4">{T('Teilen', 'Share')} ↗</li>
+          </ul>
+        </div>
+        <div class="dsp-feature dsp-quota m-up" style="--d:4">
           <h3>{T('Schadensquote monatlich digital ablesbar', 'Monthly loss ratio at a glance')}</h3>
           <p>{T('Behalte Deine Schadensquote jeden Monat im Blick – die Grundlage für bessere Konditionen.', 'Keep an eye on your loss ratio every month – the basis for better terms.')}</p>
           <div class="q-chart" data-q>{bars}</div>
@@ -1368,8 +1385,8 @@ def build_dsp():
     page(
         path="amazon-dsp/index.html",
         title=T("Flottenversicherung für Amazon DSP Partner | Schneider & Musil", "Fleet insurance for Amazon DSP partners | Schneider & Musil"),
-        desc=T("Flottenversicherung für Amazon Delivery Service Partner: Anbindung an CoDriver, Upload aus Cortex, starke Versicherer wie Allianz und die FLEETSURANCE App.",
-               "Fleet insurance for Amazon Delivery Service Partners: CoDriver integration, Cortex upload, strong insurers such as Allianz and the FLEETSURANCE app."),
+        desc=T("Flottenversicherung für Amazon Delivery Service Partner: Anbindung an CoDriver, Upload aus Cortex, Allianz & Co., Dauer-eVB und die FLEETSURANCE App.",
+               "Fleet insurance for Amazon Delivery Service Partners: CoDriver integration, Cortex upload, Allianz & more, permanent eVB and the FLEETSURANCE app."),
         body=body, noindex=True, body_class="dsp-page",
         extra_head='<link rel="stylesheet" href="/assets/css/dsp.css">',
         extra_js='\n<script src="/assets/js/dsp.js" defer></script>',

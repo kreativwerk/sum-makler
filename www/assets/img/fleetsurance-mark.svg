@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="120 130 680 665" role="img" aria-label="FLEETSURANCE">
+  <defs>
+    <linearGradient id="fsRib" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#0050ff"/>
+      <stop offset=".55" stop-color="#004cf2"/>
+      <stop offset="1" stop-color="#013dae"/>
+    </linearGradient>
+    <linearGradient id="fsFold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0233a0" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#0050ff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <path fill="#0050ff" d="M130 287 L198 168 Q213 142 262 142 L785 142 L718 258 Q701 287 652 287 Z"/>
+  <path fill="url(#fsRib)" d="M685 313 L628 416 Q609 458 560 458 L400 458 L470 580 Q497 627 471 672 L415 782 L292 563 Q252 492 284 410 Q322 316 432 313 Z"/>
+  <path fill="url(#fsFold)" d="M432 313 L540 313 L540 458 L400 458 Q372 415 385 375 Q400 318 432 313 Z"/>
+</svg>
