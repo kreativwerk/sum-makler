@@ -5,11 +5,10 @@
   if (reduce) {
     /* SVG-Animationen (Transporter, Datenpunkte) anhalten */
     document.querySelectorAll('.dsp-page svg').forEach(function (s) { if (s.pauseAnimations) s.pauseAnimations(); });
-    document.querySelectorAll('.q-chart').forEach(function (c) { c.classList.add('is-in'); });
     return;
   }
   document.documentElement.classList.add('js-motion');
-  var els = document.querySelectorAll('.m-in, .m-up, .m-left, .m-right, .m-scale, .q-chart');
+  var els = document.querySelectorAll('.m-up');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
@@ -20,6 +19,25 @@
   } else {
     els.forEach(function (el) { el.classList.add('is-in'); });
   }
+  /* Kennzahl hochzählen (3.500) */
+  var de = document.documentElement.lang !== 'en';
+  document.querySelectorAll('[data-count]').forEach(function (el) {
+    var to = parseInt(el.dataset.count, 10);
+    var fmt = function (v) { return Math.round(v).toLocaleString(de ? 'de-DE' : 'en-GB'); };
+    el.textContent = fmt(0);
+    var cio = new IntersectionObserver(function (en) {
+      if (!en[0].isIntersecting) return;
+      cio.disconnect();
+      var t0 = performance.now();
+      (function tick(now) {
+        var p = Math.min(1, (now - t0) / 1600);
+        el.textContent = fmt(to * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(tick);
+      })(t0);
+    }, { threshold: 0.6 });
+    cio.observe(el);
+  });
+
   /* Scroll-Fortschritt (--p) für Parallax-Elemente */
   var prog = document.querySelectorAll('[data-progress]');
   var ticking = false;
